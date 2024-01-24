@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import imglog from "./logoh.jpg";
 import {Link,useNavigate} from 'react-router-dom';
+import { logInStart,logInSuccess,logInFailure } from '../redux/user/userSlice';
+import { useDispatch, useSelector } from 'react-redux';
 
 function Ulogin() {
   const [formData,setFormData] = useState({});
-  const [error,setError] = useState(false);
-  const [loading,setLoading] = useState(false);
+  const {loading,error}=useSelector((state)=>state.user);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const handleChange =(e)=>{
     setFormData({...formData,[e.target.id]:e.target.value});
   }
@@ -14,8 +16,7 @@ function Ulogin() {
   const handleSubmit = async(e)=>{
     e.preventDefault();
     try {
-      setLoading(true);
-      setError(false);
+      dispatch(logInStart());
       const res = await fetch('/api/auth/ulogin',{
         method:'POST',
         headers:{
@@ -24,16 +25,15 @@ function Ulogin() {
         body:JSON.stringify(formData),
       });
       const data = await res.json();
-      setLoading(false);
       if(data.success === false){
-        setError(true);
+        dispatch(logInFailure(data));
         return;
       }
+      dispatch(logInSuccess(data));
       navigate('/');
       
     } catch (error) {
-      setLoading(false);
-      setError(true);
+      dispatch(logInFailure(error));
     }
     
   };
@@ -53,7 +53,9 @@ function Ulogin() {
             </button></center>
             </form>
             <center><div className="fs-5 mb-2">Don't have an Account?<Link to="/usignup" style={{textDecoration:"none"}} className='link text-warning'>Signup</Link></div></center>
-            <center><b><p className='text-danger mt-3'>{error && "Something went wrong!"}</p></b></center>
+            <center><b><p className='text-danger mt-2'>
+              {error ? error.message || "Something went wrong!" : ""}
+            </p></b></center>
         </div>
         
     </div>
