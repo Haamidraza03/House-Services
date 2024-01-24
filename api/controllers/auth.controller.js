@@ -17,7 +17,7 @@ export const usignup = async(req,res,next)=>{
     
 };
 
-export const usignin = async (req,res,next)=>{
+export const ulogin = async (req,res,next)=>{
     const {email,password} = req.body;
     try {
         const validUser = await User.findOne({email});
