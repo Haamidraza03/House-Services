@@ -6,5 +6,6 @@ const router = express.Router();
 
 router.post("/usignup",usignup)
 router.post("/ulogin",ulogin)
+router.post("/google",)
 
 export default router;
