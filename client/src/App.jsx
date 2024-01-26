@@ -12,6 +12,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Contact from './pages/Contact';
 import Ulogin from './pages/Ulogin';
 import Splogin from './pages/Splogin';
+import Profile from './pages/Profile';
+import PrivateRoute from './components/PrivateRoute';
 
 function App() {
 
@@ -43,6 +45,9 @@ function App() {
           <Route path='/contact' element={<Contact/>} />
           <Route path='/ulogin' element={<Ulogin/>} />
           <Route path='/splogin' element={<Splogin/>} />
+          <Route element={<PrivateRoute/>}>
+          <Route path='/profile' element={<Profile/>} />
+          </Route>
         <Route path="*" element={<h1>404 Not Found</h1>} />
         </Routes>
         <Footer/>
