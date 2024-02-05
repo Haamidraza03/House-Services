@@ -51,7 +51,7 @@ function Usignup() {
             <center><button disabled={loading} className='btn bg-success rounded-pill fs-5 px-5 mb-2 text-white'>
             {loading? 'Loading...':'Sign Up'}
             </button></center>
-            <center><OAuth/></center>
+            {/* <center><OAuth/></center> */}
             </form>
             <center><div className="fs-5 mb-2">Already have an Account?<Link to="/ulogin" style={{textDecoration:"none"}} className='link text-warning'>Login</Link></div></center>
             <center><b><p className='text-danger mt-3'>{error && "Something went wrong!"}</p></b></center>

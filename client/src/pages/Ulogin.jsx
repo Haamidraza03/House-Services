@@ -52,7 +52,7 @@ function Ulogin() {
             <center><button disabled={loading} className='btn bg-success rounded-pill fs-5 px-5 mb-2 text-white'>
             {loading? 'Loading...':'Login'}
             </button></center>
-            <center><OAuth/></center>
+            {/* <center><OAuth/></center> */}
             </form>
             <center><div className="fs-5 mb-2">Don't have an Account?<Link to="/usignup" style={{textDecoration:"none"}} className='link text-warning'>Signup</Link></div></center>
             <center><b><p className='text-danger mt-2'>
