@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react'
 import Navbar from '../components/Navbar';
 import { useSelector } from 'react-redux';
-import {getDownloadURL, getStorage, uploadBytesResumable} from "firebase/storage"
+import {getDownloadURL, getStorage, uploadBytesResumable,ref} from "firebase/storage";
 import {app} from "../firebase";
 
 function Profile() {
@@ -11,6 +11,7 @@ function Profile() {
   const [imagePercent, setImagePercent] = useState(0);
   const [imageError,setImageError] = useState(false);
   const [formData,setFormData] = useState({});
+
   useEffect(()=>{
     if(image){
       handleFileUpload(image);
@@ -45,7 +46,15 @@ function Profile() {
                 <h1 className='text-center mt-5'>Profile</h1>
                 <center><form>
                   <input type="file" ref={fileRef} hidden accept='image/*' onChange={(e)=> setImage(e.target.files[0])} />
-                  <center><img src={currentUser.profilePicture} style={{cursor:'pointer'}} alt="Profile Pic" className='img-fluid col-md-4 rounded-circle' onClick={() => fileRef.current.click()} /></center>
+                  <center><img src={formData.profilePicture || currentUser.profilePicture} style={{cursor:'pointer'}} alt="Profile Pic" className='img-fluid col-md-4 rounded-circle' onClick={() => fileRef.current.click()} />
+                  <p>
+                  {imageError ? (
+                    <span className='text-danger'>Error Uploading Image (File size must be less than 2 MB)</span>) : imagePercent > 0 && imagePercent < 100 ? (
+                      <span className='text-info'>{`Uploading: ${imagePercent} %`}</span> ): imagePercent === 100 ? (
+                        <span className='text-success'><b>Image Uploaded Successfully</b></span>) : ""
+                  }
+                  </p>
+                  </center>
                   <input defaultValue={currentUser.uname} type="text" id='uname' placeholder='Username' className='p-2 rounded-3' /> <br />
                   <input defaultValue={currentUser.email} type="email" id='email' placeholder='E-mail' className='p-2 rounded-3' /> <br />
                   <input type="password" id='password' placeholder='Password' className='p-2 rounded-3' /> <br />
