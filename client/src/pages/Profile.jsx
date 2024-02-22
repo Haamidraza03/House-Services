@@ -3,14 +3,19 @@ import Navbar from '../components/Navbar';
 import { useSelector } from 'react-redux';
 import {getDownloadURL, getStorage, uploadBytesResumable,ref} from "firebase/storage";
 import {app} from "../firebase";
+import { useDispatch } from 'react-redux';
+import { updateUserFailure,updateUserStart,updateUserSuccess } from '../redux/user/userSlice';
 
 function Profile() {
+  const dispatch = useDispatch();
   const fileRef = useRef(null);
   const [image,setImage] = useState(undefined);
-  const {currentUser} = useSelector(state=>state.user);
   const [imagePercent, setImagePercent] = useState(0);
   const [imageError,setImageError] = useState(false);
   const [formData,setFormData] = useState({});
+  const [updateSuccess,setUpdateSuccess] = useState(false);
+
+  const {currentUser,loading,error} = useSelector(state=>state.user);
 
   useEffect(()=>{
     if(image){
@@ -37,6 +42,34 @@ function Profile() {
       )
     });
   };
+
+  const handleChange = (e)=>{
+    setFormData({...formData,[e.target.id]:e.target.value});
+  };
+
+  const handleSubmit = async (e)=>{
+    e.preventDefault();
+    try {
+      dispatch(updateUserStart());
+      const res = await fetch(`/api/user/update/${currentUser._id}`,{
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+      const data = await res.json();
+      if(data.success === false){
+        dispatch(updateUserFailure(data));
+        return;
+      }
+      dispatch(updateUserSuccess(data));
+      setUpdateSuccess(true);
+    } catch (error) {
+      dispatch(updateUserFailure(error));
+    }
+  };
+
   return (
     <div>
         <Navbar/>
@@ -44,7 +77,7 @@ function Profile() {
             <div className="row justify-content-center">
               <div className="col-md-4">
                 <h1 className='text-center mt-5'>Profile</h1>
-                <center><form>
+                <center><form onSubmit={handleSubmit}>
                   <input type="file" ref={fileRef} hidden accept='image/*' onChange={(e)=> setImage(e.target.files[0])} />
                   <center><img src={formData.profilePicture || currentUser.profilePicture} style={{cursor:'pointer'}} alt="Profile Pic" className='img-fluid col-md-4 rounded-circle' onClick={() => fileRef.current.click()} />
                   <p>
@@ -55,15 +88,17 @@ function Profile() {
                   }
                   </p>
                   </center>
-                  <input defaultValue={currentUser.uname} type="text" id='uname' placeholder='Username' className='p-2 rounded-3' /> <br />
-                  <input defaultValue={currentUser.email} type="email" id='email' placeholder='E-mail' className='p-2 rounded-3' /> <br />
-                  <input type="password" id='password' placeholder='Password' className='p-2 rounded-3' /> <br />
-                  <button className='btn rounded-pill bg-success text-white px-3 py-1 mt-2'>Update</button>
+                  <input defaultValue={currentUser.uname} type="text" id='uname' placeholder='Username' className='p-2 rounded-3' onChange={handleChange} /> <br />
+                  <input defaultValue={currentUser.email} type="email" id='email' placeholder='E-mail' className='p-2 rounded-3' onChange={handleChange} /> <br />
+                  <input type="password" id='password' placeholder='Password' className='p-2 rounded-3' onChange={handleChange} /> <br />
+                  <button className='btn rounded-pill bg-success text-white px-3 py-1 mt-2'>{loading ? 'Loading...':'Update'}</button>
                 </form></center>
                 <center><div className='row justify-content-between mt-3'>
                   <span className='text-danger col-md-5 fs-5' style={{cursor:"pointer"}}>Delete Account</span>
                   <span className='text-danger col-md-5 fs-5' style={{cursor:"pointer"}}>Log Out</span>
                 </div></center>
+                <center><p className='text-danger mt-5'>{error && "Something went Wrong!"}</p></center>
+                <center><p className='text-success mt-5'><b>{updateSuccess && "User is Updated Successfully!!"}</b></p></center>
               </div>
             </div>
         </div>
