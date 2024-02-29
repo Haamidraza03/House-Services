@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import {getDownloadURL, getStorage, uploadBytesResumable,ref} from "firebase/storage";
 import {app} from "../firebase";
 import { useDispatch } from 'react-redux';
-import { updateUserFailure,updateUserStart,updateUserSuccess } from '../redux/user/userSlice';
+import { updateUserFailure,updateUserStart,updateUserSuccess,deleteUserStart,deleteUserFailure,deleteUserSuccess,logOut } from '../redux/user/userSlice';
 
 function Profile() {
   const dispatch = useDispatch();
@@ -70,6 +70,32 @@ function Profile() {
     }
   };
 
+  const handleDeleteAccount = async()=>{
+    try {
+      dispatch(deleteUserStart());
+      const res = await fetch(`/api/user/delete/${currentUser._id}`,{
+        method: 'DELETE',
+      });
+      const data = await res.json();
+      if(data.success===false){
+        dispatch(deleteUserFailure(data));
+        return;
+      }
+      dispatch(deleteUserSuccess(data));
+    } catch (error) {
+      dispatch(deleteUserFailure(error));
+    }
+  }
+
+  const handleLogout = async()=>{
+    try {
+      await fetch('/api/auth/logout');
+      dispatch(logOut());
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <div>
         <Navbar/>
@@ -94,8 +120,8 @@ function Profile() {
                   <button className='btn rounded-pill bg-success text-white px-3 py-1 mt-2'>{loading ? 'Loading...':'Update'}</button>
                 </form></center>
                 <center><div className='row justify-content-between mt-3'>
-                  <span className='text-danger col-md-5 fs-5' style={{cursor:"pointer"}}>Delete Account</span>
-                  <span className='text-danger col-md-5 fs-5' style={{cursor:"pointer"}}>Log Out</span>
+                  <span onClick={handleDeleteAccount} className='text-danger col-md-5 fs-5' style={{cursor:"pointer"}}>Delete Account</span>
+                  <span onClick={handleLogout} className='text-danger col-md-5 fs-5' style={{cursor:"pointer"}}>Log Out</span>
                 </div></center>
                 <center><p className='text-danger mt-5'>{error && "Something went Wrong!"}</p></center>
                 <center><p className='text-success mt-5'><b>{updateSuccess && "User is Updated Successfully!!"}</b></p></center>
