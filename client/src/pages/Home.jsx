@@ -15,7 +15,11 @@ function Home() {
     <div>
       <Navbar/>
       <div className="row justify-content-center" id='herotop' style={{marginTop:"80px"}}>
-        <p className='mt-5 text-white fs-3 text-center'>Welcome {currentUser.uname}&#128075;</p>
+      {currentUser ? (
+                <p className='mt-5 text-white fs-3 text-center'>Welcome {currentUser.uname}&#128075;</p>
+              ):(
+                <span></span>
+      )}
         <div className="col-md-5" data-aos="zoom-in" data-aos-duration="1500" data-aos-easing="ease-in-out">
           <img src="aboutback1.png" className='img-fluid rounded-5 p-2' />
         </div>
