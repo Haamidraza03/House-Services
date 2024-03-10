@@ -8,6 +8,7 @@ import { useSelector } from 'react-redux';
 
 function BasicExample() {
   const {currentUser} = useSelector((state)=>state.user)
+  const {currentSp} = useSelector((state)=>state.sp)
   return (
       <Navbar expand="lg" className="bg-body-tertiary fixed-top" data-bs-theme="dark">
       <Container>
@@ -19,12 +20,14 @@ function BasicExample() {
             <Link to="/about" className='fs-5 nav-link active me-3'>About Us</Link>
             <Link to="/contact" className='fs-5 nav-link active me-3'>Contact Us</Link>
             <Link to="/profile" className='fs-5 nav-link active'>
-              {currentUser ? (
+              {currentSp ? (
+                <img src={currentSp.profilePicture} alt="profile" width="43" className='rounded-circle' />
+              ) : currentUser ? (
                 <img src={currentUser.profilePicture} alt="profile" width="43" className='rounded-circle' />
-              ):(
+              ) : (
                 <li>Login/SignUp</li>
               )}
-              </Link>
+            </Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

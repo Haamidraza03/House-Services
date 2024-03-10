@@ -11,12 +11,15 @@ import { useSelector } from 'react-redux';
 
 function Home() {
   const {currentUser} = useSelector(state=>state.user);
+  const {currentSp} = useSelector(state=>state.sp);
   return (
     <div>
       <Navbar/>
       <div className="row justify-content-center" id='herotop' style={{marginTop:"80px"}}>
       {currentUser ? (
                 <p className='mt-5 text-white fs-3 text-center'>Welcome {currentUser.uname}&#128075;</p>
+              ): currentSp?(
+                <p className='mt-5 text-white fs-3 text-center'>Welcome {currentSp.uname}&#128075;</p>
               ):(
                 <span></span>
       )}
