@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState, useRef } from 'react'
 import Navbar from '../components/Navbar';
 import { useSelector } from 'react-redux';
@@ -151,7 +152,7 @@ function Profile() {
                 <h1 className='text-center mt-5'>Profile</h1>
                 <center><form onSubmit={handleSubmit}>
                   <input type="file" ref={fileRef} hidden accept='image/*' onChange={(e)=> setImage(e.target.files[0])} />
-                  <center><img src={formData.profilePicture || currentUser.profilePicture || currentSp.profilePicture} style={{cursor:'pointer'}} alt="Profile Pic" className='img-fluid col-md-4 rounded-circle' onClick={() => fileRef.current.click()} />
+                  <center><img src={currentUser ? currentUser.profilePicture : currentSp ? currentSp.profilePicture : formData.profilePicture} style={{cursor:'pointer'}} alt="Profile Pic" className='img-fluid col-md-4 rounded-circle' onClick={() => fileRef.current.click()} />
                   <p>
                   {imageError ? (
                     <span className='text-danger'>Error Uploading Image (File size must be less than 2 MB)</span>) : imagePercent > 0 && imagePercent < 100 ? (
@@ -160,8 +161,8 @@ function Profile() {
                   }
                   </p>
                   </center>
-                  <input defaultValue={currentUser.uname || currentSp.uname} type="text" id='uname' placeholder='Username' className='p-2 rounded-3' onChange={handleChange} /> <br />
-                  <input defaultValue={currentUser.email || currentSp.email} type="email" id='email' placeholder='E-mail' className='p-2 rounded-3' onChange={handleChange} /> <br />
+                  <input defaultValue={currentUser ? currentUser.uname : currentSp ? currentSp.uname : none} type="text" id='uname' placeholder='Username' className='p-2 rounded-3' onChange={handleChange} /> <br />
+                  <input defaultValue={currentUser ? currentUser.email : currentSp ? currentSp.email : none} type="email" id='email' placeholder='E-mail' className='p-2 rounded-3' onChange={handleChange} /> <br />
                   <input type="password" id='password' placeholder='Password' className='p-2 rounded-3' onChange={handleChange} /> <br />
                   <button className='btn rounded-pill bg-success text-white px-3 py-1 mt-2'>{loading ? 'Loading...':'Update'}</button>
                 </form></center>
