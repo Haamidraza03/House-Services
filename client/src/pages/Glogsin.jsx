@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faUser,faUserTie } from '@fortawesome/free-solid-svg-icons';
 import {useTypewriter,Cursor} from "react-simple-typewriter";
 import {Link} from 'react-router-dom';
+import imglog from "./logoh.jpg";
 
 function Glogsin() {
   const [text] = useTypewriter({
@@ -19,6 +20,11 @@ function Glogsin() {
             <h1 className="text-dark" style={{fontSize: 40}}>House <span style={{fontWeight:"bold",color:"rgb(255, 183, 0)"}}>{text}</span><span><Cursor/></span></h1>
             <Link to="/spsignup"><div className="btn btn1 fs-5 rounded-pill border border-dark px-2 mt-3 w-75" data-aos="zoom-in" data-aos-duration="2500" data-aos-easing="ease-in-out"><FontAwesomeIcon icon={faUserTie} style={{fontSize: 25}}/> Service Provider</div></Link> <br />
             <Link to="/usignup"><div className="btn btn1 fs-5 rounded-pill border border-dark px-5 mt-3 w-75" data-aos="zoom-in" data-aos-duration="2500" data-aos-easing="ease-in-out"><FontAwesomeIcon icon={faUser} style={{fontSize: 23}}/> User</div></Link>
+          </div>
+        </div>
+        <div className="row justify-content-center">
+          <div className="col-md-1 rounded-circle">
+          <center><Link to="/"><img src={imglog} className='img-fluid rounded-circle mb-0' data-aos="flip-right" data-aos-duration="1500" data-aos-easing="ease-in-out" /></Link></center>
           </div>
         </div>
     </div>

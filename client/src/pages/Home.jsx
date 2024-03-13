@@ -37,7 +37,7 @@ function Home() {
       ) :currentSp ? (
         <p className="fs-1 text-center text-white mt-4" data-aos="fade-up" data-aos-duration="1500" data-aos-easing="ease-in-out" id='sp'>Users</p>
       ):(
-        <span></span>
+        <p className="fs-1 text-center text-white mt-4" data-aos="fade-up" data-aos-duration="1500" data-aos-easing="ease-in-out" id='sp'>Service Providers</p>
       )}
       
        <div className="row justify-content-evenly mt-4 bg-dark py-2 px-4 rounded-top-pill">
