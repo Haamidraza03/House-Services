@@ -31,6 +31,7 @@ export const updateSp = async (req,res,next)=>{
                     password:req.body.password,
                     profilePicture:req.body.profilePicture,
                     description:req.body.description,
+                    phno:req.body.phno,
                 }
             },
             {new:true}

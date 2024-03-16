@@ -19,9 +19,9 @@ export const usignup = async(req,res,next)=>{
 };
 
 export const spsignup = async (req, res, next)=>{
-    const {uname,email,prof,password} = req.body;
+    const {uname,email,prof,phno,password} = req.body;
     const hashedPassword = bcryptjs.hashSync(password,10);
-    const newSp = new Sp({uname,email,prof,password:hashedPassword});
+    const newSp = new Sp({uname,email,prof,phno,password:hashedPassword});
     try{
         await newSp.save()
         res.status(201).json({message:"Service Provider created Successfully."});
