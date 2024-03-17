@@ -20,6 +20,9 @@ export const usignup = async(req,res,next)=>{
 
 export const spsignup = async (req, res, next)=>{
     const {uname,email,prof,phno,password} = req.body;
+    if (phno.length!== 10) {
+        return next(new Error("Phone number must be 10 digits long."));
+      }
     const hashedPassword = bcryptjs.hashSync(password,10);
     const newSp = new Sp({uname,email,prof,phno,password:hashedPassword});
     try{
