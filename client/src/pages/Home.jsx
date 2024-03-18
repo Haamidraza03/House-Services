@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect,useState} from 'react';
 import Navbar from "../components/Navbar"
 import makeup from "./makeup.jpg"
 import carpenter from "./carpenter.jpg"
@@ -13,6 +13,8 @@ function Home() {
   
   const {currentUser} = useSelector(state=>state.user);
   const {currentSp} = useSelector(state=>state.sp);
+
+
   return (
     <div>
       <Navbar/>
@@ -39,6 +41,16 @@ function Home() {
       ):(
         <p className="fs-1 text-center text-white mt-4" data-aos="fade-up" data-aos-duration="1500" data-aos-easing="ease-in-out" id='sp'>Service Providers</p>
       )}
+
+        
+            {/* <div className="row justify-content-evenly mt-4 bg-dark py-2 px-4 rounded-top-pill rounded-bottom-pill">
+            <div className="col-md-3 p-3 border border-info shadow rounded-4 mt-5 text-center text-white" data-aos="zoom-in" data-aos-duration="1000" data-aos-easing="ease-in-out">
+              <img src={makeup} className='img-fluid rounded-4 shadow mb-3' />
+              <span className='fs-4'>Username</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className='fs-4'>Profession</span>
+              <p id='para1'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vero sequi repellat vel, nihil reiciendis soluta hic voluptate! Deserunt, tempora omnis.</p>
+              <Link><button className='btn btn2 shadow rounded-pill px-4 py-1 bg-info text-dark fs-5'>Contact Now</button></Link></div>
+          </div> */}
+          
       
        <div className="row justify-content-evenly mt-4 bg-dark py-2 px-4 rounded-top-pill">
           <div className="col-md-3 p-3 border border-info shadow rounded-4 mt-5 text-center text-white" data-aos="zoom-in" data-aos-duration="1000" data-aos-easing="ease-in-out"><img src={makeup} className='img-fluid rounded-4 shadow mb-3' /><p id='para1'>Professional makeup artist ready to enhance your beauty. From natural looks to glamour, we've got you covered.</p><Link to="/glogsin"><button className='btn btn2 shadow rounded-pill px-4 py-1 bg-info text-dark fs-5'>Contact Now</button></Link></div>
