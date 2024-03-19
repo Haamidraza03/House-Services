@@ -8,13 +8,22 @@ import artist from "./artist.jpg"
 import plumber from "./plumber.jpg"
 import {Link} from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import axios from 'axios';
 
 function Home() {
   
   const {currentUser} = useSelector(state=>state.user);
   const {currentSp} = useSelector(state=>state.sp);
+   const getItem =async ()=>{
+    
+    const resposnce = await axios.get('http://localhost:3000/api/sp/get-item');
+    
+    console.log(resposnce.data.message);
+   }
 
-
+   useEffect(()=>{
+    getItem();
+   },[])
   return (
     <div>
       <Navbar/>

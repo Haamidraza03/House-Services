@@ -1,10 +1,10 @@
 import express from 'express';
-import {test2, updateSp,deleteSp} from '../controllers/sp.controller.js';
+import {getHomeItem, updateSp,deleteSp} from '../controllers/sp.controller.js';
 import { verifyToken } from '../utils/verifySp.js';
 
 const router = express.Router();
 
-router.get('/',test2);
+router.get('/get-item',getHomeItem);
 router.post("/update/:id", verifyToken, updateSp);
 router.delete("/delete/:id", verifyToken, deleteSp);
 

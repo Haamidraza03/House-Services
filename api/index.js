@@ -5,13 +5,14 @@ import userRoutes from './routes/user.route.js';
 import authRoutes from './routes/auth.route.js';
 import spRoutes from './routes/sp.route.js';
 import cookieParser from 'cookie-parser';
+import cors from 'cors';
 import path from "path";
 
 dotenv.config();
 
-mongoose.connect(process.env.MONGO).then(()=>{
+mongoose.connect(process.env.MONGO).then(() => {
     console.log('Connected to MongoDB');
-}).catch((err)=>{
+}).catch((err) => {
     console.log(err);
 });
 
@@ -22,23 +23,26 @@ const app = express();
 app.use(express.static(path.join(__dirname, '/client/dist')));
 
 app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, 'client','dist','index.html'));
+    res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
 });
-
+  
+app.use(cors());
 app.use(express.json());
+// app.use(cors());
+// app.use(cors({
+//     origin: 'http://localhost:5173',
+//   }));
+
 
 app.use(cookieParser());
 
-app.listen(3000,()=>{
-    console.log('Server listening on port 3000');
-});
 
-app.use("/api/user",userRoutes);
-app.use("/api/auth",authRoutes);
-app.use("/api/sp",spRoutes);
+app.use("/api/user", userRoutes);
+app.use("/api/auth", authRoutes);
+app.use("/api/sp", spRoutes);
 
 
-app.use((err,req,res,next)=>{
+app.use((err, req, res, next) => {
     const statusCode = err.statusCode || 500;
     const message = err.message || 'Internal Server Error';
     return res.status(statusCode).json({
@@ -47,3 +51,7 @@ app.use((err,req,res,next)=>{
         statusCode,
     });
 })
+
+app.listen(3000, () => {
+    console.log('Server listening on port 3000');
+});
