@@ -2,27 +2,6 @@ import Sp from "../models/sp.model.js";
 import { errorHandler } from "../utils/error.js";
 import bcryptjs from "bcryptjs";
 
-export const getHomeItem = (req,res)=>{
-  try {
-    res.send(200).json({
-        success: true,
-        message: 'API successful',
-    })
-    const items = Sp.find();
-    if(items){
-        console.log(items);
-    }
-  } catch (error) {
-    console.log(error);
-    res.send(500).json({
-        success: fail,
-        message: 'API unsuccessful',
-    })
-  }
-}
-
-
-
 // update sp
 
 export const updateSp = async (req,res,next)=>{

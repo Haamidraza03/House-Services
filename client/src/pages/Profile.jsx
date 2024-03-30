@@ -149,7 +149,7 @@ function Profile() {
         <div className='text-white' style={{marginTop:'80px'}}>
             <div className="row justify-content-center">
               <div className="col-md-8">
-                <h1 className='text-center mt-2' data-aos="fade-down" data-aos-duration="1000" data-aos-easing="ease-in-out">Profile</h1>
+                <h1 className='text-center mt-1' data-aos="fade-down" data-aos-duration="1000" data-aos-easing="ease-in-out">Profile</h1>
                 <center><form onSubmit={handleSubmit}>
                   <input type="file" ref={fileRef} hidden accept='image/*' onChange={(e)=> setImage(e.target.files[0])} />
                   <center><img src={currentUser ? currentUser.profilePicture : currentSp ? currentSp.profilePicture : formData.profilePicture} style={{cursor:'pointer', width:'150px'}} alt="Profile Pic" className='img-fluid col-md-4 rounded-circle' onClick={() => fileRef.current.click()} />
@@ -161,7 +161,7 @@ function Profile() {
                   }
                   </p>
                   </center>
-                  <input defaultValue={currentUser ? currentUser.uname : currentSp ? currentSp.uname : none} type="text" id='uname' placeholder='Username' data-aos="slide-up" data-aos-duration="1000" data-aos-easing="ease-in-out" className='px-3 py-2 mt-1 mt-0 rounded-3 w-50' onChange={handleChange} /> <br />
+                  <input defaultValue={currentUser ? currentUser.uname : currentSp ? currentSp.uname : none} type="text" id='uname' placeholder='Username' data-aos="slide-up" data-aos-duration="1000" data-aos-easing="ease-in-out" className='px-3 py-2 mt-0 mt-0 rounded-3 w-50' onChange={handleChange} /> <br />
                   <input defaultValue={currentUser ? currentUser.email : currentSp ? currentSp.email : none} type="email" id='email' placeholder='E-mail' data-aos="slide-up" data-aos-duration="1500" data-aos-easing="ease-in-out" className='px-3 py-2 mt-1 rounded-3 w-50' onChange={handleChange} /> <br />
                   {currentUser? (
                       <span></span>

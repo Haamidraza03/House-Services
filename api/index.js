@@ -9,6 +9,8 @@ import cors from 'cors';
 import path from "path";
 
 dotenv.config();
+const app = express();
+app.use(cors());
 
 mongoose.connect(process.env.MONGO).then(() => {
     console.log('Connected to MongoDB');
@@ -18,20 +20,17 @@ mongoose.connect(process.env.MONGO).then(() => {
 
 const __dirname = path.resolve();
 
-const app = express();
 
-app.use(express.static(path.join(__dirname, '/client/dist')));
+//never use this 
+// app.use(express.static(path.join(__dirname, '/client/dist')));
 
-app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
-});
+// app.get("*", (req, res) => {
+//     res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
+// });
+
   
-app.use(cors());
+
 app.use(express.json());
-// app.use(cors());
-// app.use(cors({
-//     origin: 'http://localhost:5173',
-//   }));
 
 
 app.use(cookieParser());
@@ -40,6 +39,10 @@ app.use(cookieParser());
 app.use("/api/user", userRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/sp", spRoutes);
+
+app.get("/", (req, res) => {
+    res.send("Welcome");
+});
 
 
 app.use((err, req, res, next) => {
