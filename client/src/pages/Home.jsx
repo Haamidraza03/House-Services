@@ -65,6 +65,7 @@ function Home() {
 
         {currentUser?(<div className="row row-cols-md-3 justify-content-evenly mt-4 bg-dark py-2 px-4 rounded-top-pill rounded-bottom-pill">
             {serviceProviders.length > 0 && serviceProviders?serviceProviders.map((user)=>{
+              const whatsappUrl = `whatsapp://send?phone=${user.phno}&text=Hello%20I%20Want%20to%20know%20more%20about%20your%20charges%20for%20your%20House-Services !`;
             return((<div key={user._id} className="col-md-3 py-3 px-3 me-3 border border-info shadow rounded-4 mt-5 text-center text-white" data-aos="zoom-in" data-aos-duration="1000" data-aos-easing="ease-in-out">
             <img src={user.profilePicture} className='img-fluid rounded-4 shadow mb-3' />
             <div className='d-flex fs-4 justify-content-around'>
@@ -72,13 +73,24 @@ function Home() {
               <div>{user.prof}</div>
             </div>
             <p id='para1'>{user.description}</p>
-            <Link><button className='btn btn2 shadow rounded-pill px-4 py-1 bg-info text-dark fs-5'>Contact Now</button></Link></div>))
+            <a aria-label="Whatsapp" href={whatsappUrl}><button className='btn btn2 shadow rounded-pill px-4 py-1 bg-info text-dark fs-5'>Contact Now</button></a></div>))
           }):null};
           </div>):currentSp ? (
             <p className="fs-4 text-center text-white mt-4" data-aos="fade-up" data-aos-duration="2500" data-aos-easing="ease-in-out" id='sp'>No User Requests!</p>
          ):(
-            <span></span>
-        )}
+          <div>
+            <div className="row justify-content-evenly mt-4 bg-dark py-2 px-4 rounded-top-pill">
+          <div className="col-md-3 p-3 border border-info shadow rounded-4 mt-5 text-center text-white" data-aos="zoom-in" data-aos-duration="1000" data-aos-easing="ease-in-out"><img src={makeup} className='img-fluid rounded-4 shadow mb-3' /><p id='para1'>Professional makeup artist ready to enhance your beauty. From natural looks to glamour, we've got you covered.</p><Link to="/glogsin"><button className='btn btn2 shadow rounded-pill px-4 py-1 bg-info text-dark fs-5'>Contact Now</button></Link></div>
+          <div className="col-md-3 p-3 border border-info shadow rounded-4 mt-5 text-center text-white" data-aos="zoom-in" data-aos-duration="1500" data-aos-easing="ease-in-out"><img src={intedesign} className='img-fluid rounded-4 shadow mb-3' /><p id='para1'>Creative and visionary interior designer. Elevating your living spaces with style and functionality.</p><Link to="/glogsin"><button className='btn btn2 shadow rounded-pill px-4 py-1 bg-info text-dark fs-5'>Contact Now</button></Link></div>
+          <div className="col-md-3 p-3 border border-info shadow rounded-4 mt-5 text-center text-white" data-aos="zoom-in" data-aos-duration="2000" data-aos-easing="ease-in-out"><img src={carpenter} className='img-fluid rounded-4 shadow mb-3' /><p id='para1'>Highly skilled and dedicated carpenter. Transform your ideas into wooden wonders.</p><Link to="/glogsin"><button className='btn btn2 shadow rounded-pill px-4 py-1 bg-info text-dark fs-5'>Contact Now</button></Link></div>
+        </div>
+        <div className="row justify-content-evenly bg-dark py-2 px-4 rounded-bottom-pill">
+          <div className="col-md-3 p-3 border border-info shadow rounded-4 mt-5 text-center text-white" data-aos="zoom-in" data-aos-duration="2500" data-aos-easing="ease-in-out"><img src={artist} className='img-fluid rounded-4 shadow mb-3' /><p id='para1'>Talented and passionate artist. Bringing imagination to life through stunning artworks.</p><Link to="/glogsin"><button className='btn btn2 shadow rounded-pill px-4 py-1 bg-info text-dark fs-5'>Contact Now</button></Link></div>
+          <div className="col-md-3 p-3 border border-info shadow rounded-4 mt-5 text-center text-white" data-aos="zoom-in" data-aos-duration="2500" data-aos-easing="ease-in-out"><img src={gardener} className='img-fluid rounded-4 shadow mb-3' /><p id='para1'>Gardener: Experienced and dedicated gardener. Cultivating green oases and taming unruly landscapes.</p><Link to="/glogsin"><button className='btn btn2 shadow rounded-pill px-4 py-1 bg-info text-dark fs-5'>Contact Now</button></Link></div>
+          <div className="col-md-3 p-3 border border-info shadow rounded-4 mt-5 text-center text-white" data-aos="zoom-in" data-aos-duration="2500" data-aos-easing="ease-in-out"><img src={plumber} className='img-fluid rounded-4 shadow mb-3' /><p id='para1'>Experienced and reliable plumber at your service. Fixing leaks and ensuring your water systems run smoothly.</p><Link to="/glogsin"><button className='btn btn2 shadow rounded-pill px-4 py-1 bg-info text-dark fs-5'>Contact Now</button></Link></div>
+        </div>
+          </div>
+         )}
             
           
         
