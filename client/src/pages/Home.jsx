@@ -72,7 +72,7 @@ function Home() {
               <div>{user.uname}</div>
               <div>{user.prof}</div>
             </div>
-            <p id='para1'>{user.description}</p>
+            <p id='para1' className='bg-scroll'>{user.description}</p>
             <a aria-label="Whatsapp" href={whatsappUrl}><button className='btn btn2 shadow rounded-pill px-4 py-1 bg-info text-dark fs-5'>Contact Now</button></a></div>))
           }):null};
           </div>):currentSp ? (

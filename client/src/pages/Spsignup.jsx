@@ -44,7 +44,9 @@ function Spsignup() {
             <center><input type="text" id='uname' className='rounded-4 mb-3 fs-4 border ps-3' placeholder='Enter your User Name' onChange={handleChange} /><br /></center> 
             <center><input type="email" id='email' className='rounded-4 mb-3 fs-4 border ps-3' placeholder='Enter your Email' onChange={handleChange} /><br /></center> 
             <center><input type="text" id='prof' className='rounded-4 mb-3 fs-4 border ps-3' placeholder='Enter your Profession' onChange={handleChange} /><br /></center>
-            <center><input type="number" inputMode='numeric' id='phno' className='rounded-4 mb-3 fs-4 border ps-3' placeholder='Enter Phone Number' onChange={handleChange} /><br /></center>
+            <center><input type="number" inputMode='numeric' id='phno' className='rounded-4 mb-3 fs-4 border ps-3' placeholder='Enter Phone Number' onChange={handleChange} /><br />
+            <p style={{fontSize:'14px'}} className='text-success'>*Please Enter your WhatsApp Phone Number.</p>
+            </center>
             <center><input type="password" id='password' className='rounded-4 mb-3 fs-4 border ps-3' placeholder='Enter Password' onChange={handleChange} /><br /></center>
             <center><button disabled={loading} className='btn bg-success rounded-pill fs-5 px-5 mb-2 text-white'>
             {loading? 'Loading...':'Sign Up'}

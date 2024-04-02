@@ -37,6 +37,26 @@ textarea:focus{
   outline-color: rgb(255, 183, 0);
 }
 
+::-webkit-scrollbar{
+  width: 7px;
+  border-radius:10px !important;
+  background-color: rgb(22, 21, 21) !important;
+}
+::-webkit-scrollbar-track{
+  background-color: rgb(14, 12, 12) !important;;
+  border-radius: 10px !important;
+  z-index: -1 !important;
+}
+::-webkit-scrollbar-thumb{
+  background-color: #2AEBF8;
+  border-radius: 10px;
+}
+
+.bg-scroll{
+  overflow-y: scroll !important;
+  height: 70px !important;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
