@@ -24,6 +24,8 @@ export const updateSp = async (req,res,next)=>{
                     profilePicture:req.body.profilePicture,
                     description:req.body.description,
                     phno:req.body.phno,
+                    price:req.body.price,
+                    work:req.body.work,
                 }
             },
             {new:true}

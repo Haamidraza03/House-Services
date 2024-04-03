@@ -167,7 +167,34 @@ function Profile() {
                       <span></span>
                     ) :currentSp ? (
                       <span>
+                        <input defaultValue={ currentSp.prof} type="text" id='prof' placeholder='Proffession' data-aos="slide-up" data-aos-duration="1700" data-aos-easing="ease-in-out" className='px-3 py-2 mt-1 rounded-3 w-50' onChange={handleChange} /> <br />
+                      </span>
+                    ):(
+                      <span></span>
+                  )}
+                  {currentUser? (
+                      <span></span>
+                    ) :currentSp ? (
+                      <span>
                         <input defaultValue={ currentSp.phno} type="number" id='phno' placeholder='Phone Number' data-aos="slide-up" data-aos-duration="1700" data-aos-easing="ease-in-out" className='px-3 py-2 mt-1 rounded-3 w-50' onChange={handleChange} /> <br />
+                      </span>
+                    ):(
+                      <span></span>
+                  )}
+                  {currentUser? (
+                      <span></span>
+                    ) :currentSp ? (
+                      <span>
+                        <input defaultValue={ currentSp.price} type="number" id='price' placeholder='Enter Minimum Price' data-aos="slide-up" data-aos-duration="1700" data-aos-easing="ease-in-out" className='px-3 py-2 mt-1 rounded-3 w-50' onChange={handleChange} /> <br />
+                      </span>
+                    ):(
+                      <span></span>
+                  )}
+                  {currentUser? (
+                      <span></span>
+                    ) :currentSp ? (
+                      <span>
+                        <input defaultValue={ currentSp.work} type="text" id='work' placeholder='Part Time Or Full Time?' data-aos="slide-up" data-aos-duration="1700" data-aos-easing="ease-in-out" className='px-3 py-2 mt-1 rounded-3 w-50' onChange={handleChange} /> <br />
                       </span>
                     ):(
                       <span></span>

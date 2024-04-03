@@ -31,6 +31,14 @@ const spSchema = new mongoose.Schema({
         type: String,
         default:"lorem ipsum dolor sit amet, consectetur adipiscing elit esse cillum dolore magna aliquet lore m nibh. Cum sociis natoque penatibus et justo euismod tempor inc habitant dolore magna",
     },
+    price:{
+        type: String,
+        default:"0",
+    },
+    work:{
+        type: String,
+        default:"Part Time",
+    },
 },{timestamps: true});
 
 
