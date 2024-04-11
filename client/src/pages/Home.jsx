@@ -10,12 +10,13 @@ import {Link} from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 
-function Home() {
+function Home(props) {
 
   const [serviceProviders, getServiceProviders] = useState([]);
-  
   const {currentUser} = useSelector(state=>state.user);
   const {currentSp} = useSelector(state=>state.sp);
+  const [searchQuery, setSearchQuery] = useState('');
+
    const getItem =async ()=>{
     
     const resposnce = await fetch('http://localhost:3000/api/sp/getsps',{
@@ -27,14 +28,50 @@ function Home() {
     const result = await resposnce.json();
     // console.log(result);
     getServiceProviders(result);
-
    }
 
    useEffect(()=>{
     getItem();
-   },[])
-   
+    if (searchQuery.trim() === '') {
+      setSearchResults([]);
+    }
+   },[], [searchQuery]);
+
+     const [locations, setLocations] = useState([
+      { id: 1, placeName: "Mumbai, Maharashtra", latitude: 19.0760, longitude: 72.8777 },
+      { id: 2, placeName: "Palghar, Maharashtra", latitude: 19.7969, longitude: 72.7452},
+      { id: 3, placeName: "Navi Mumbai, Maharashtra", latitude: 19.0330, longitude: 73.0297 },
+      { id: 4, placeName: "Vasai-Virar, Maharashtra", latitude: 19.3919, longitude: 72.8397 },
+      { id: 5, placeName: "Panaji, Goa", latitude: 15.4909, longitude: 73.8278 },
+      { id: 6, placeName: "Dehradoon, Utrakhand", latitude: 30.3165, longitude: 78.0322 },
+      // Add more locations as needed
+    ]);
   
+    const [selectedLocation, setSelectedLocation] = useState('');
+    const [searchResults, setSearchResults] = useState([]);
+    const [showResults, setShowResults] =useState(false);
+  
+    const handleLocationChange = (event) => {
+      setSelectedLocation(event.target.value);
+    };
+  
+    const handleSearch = async () => {
+      const selectedLocationObj = locations.find(loc => loc.id === parseInt(selectedLocation));
+      if (!selectedLocationObj) {
+        console.error('Selected location not found or search.');
+        return;
+      }
+  
+      try {
+        const response = await fetch(`http://localhost:3000/api/sp/searchProviders?latitude=${selectedLocationObj.latitude}&longitude=${selectedLocationObj.longitude}&query=${searchQuery}`);
+        const data = await response.json();
+        setShowResults(true);
+        setSearchResults(data);
+      } catch (error) {
+        console.error('Error fetching nearby providers:', error.message);
+      }
+    };
+
 
   return (
     <div>
@@ -54,7 +91,49 @@ function Home() {
           <h1 className='text-white' style={{fontSize:"80px"}}> <b>Housyy</b> </h1>
           <p style={{color:"#2AEBF8"}} className='fs-1'>One way platform  for connecting the house services.</p>
         </div>
-      </div>
+        </div>
+
+        {currentUser ? (
+          <div>
+          <div className="row row-cols-md-3 justify-content-evenly mt-4 mx-4">
+          <select id="locationSelect" onChange={handleLocationChange} value={selectedLocation}>
+            <option value="" className="fs-5 text-center text-black mt-4">Select Location</option>
+            {locations.map((location) => (
+              <option key={location.id} value={location.id}>{location.placeName}</option>
+            ))}
+          </select>
+          <input type='text' className='shadow rounded-pill px-4 py-1 bg-info text-dark fs-5' placeholder='Search' value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)} />
+          <button className='btn btn2 shadow rounded-pill px-4 py-1 bg-info text-dark fs-5' onClick={handleSearch} >Search</button>
+          </div>
+          <div className="row row-cols-md-3 justify-content-evenly mt-4 bg-dark py-2 px-4 rounded-top-pill rounded-bottom-pill">
+            {searchResults.length > 0 && searchResults?searchResults.map((user)=>{
+              const whatsappUrl = `whatsapp://send?phone=${user.phno}&text=Hello%20I%20Want%20to%20know%20more%20about%20your%20charges%20for%20your%20House-Services%20as%20${user.prof} !`;
+            return((<div key={user._id} className="col-md-3 py-3 px-3 me-3 border border-info shadow rounded-4 mt-5 text-center text-white" data-aos="zoom-in" data-aos-duration="1000" data-aos-easing="ease-in-out">
+            <img src={user.profilePicture} className='img-fluid rounded-4 shadow mb-3' />
+            <div className='d-flex fs-4 justify-content-around'>
+              <div>{user.uname}</div>
+              <div>{user.prof}</div>
+            </div>
+            <div className='d-flex fs-4 justify-content-around'>
+              <div>Rs. {user.price}</div>
+              <div>{user.work}</div>
+            </div>
+            <div className='d-flex fs-4 justify-content-around'>Location: {user.location}</div>
+            <p id='para1' className='bg-scroll'>{user.description}</p>
+            <a aria-label="Whatsapp" target='_blank' href={whatsappUrl}><button className='btn btn2 shadow rounded-pill px-4 py-1 bg-info text-dark fs-5'>Contact Now</button></a></div>))
+          })
+           : null} {showResults && searchQuery.trim() !== '' || showResults &&  searchResults.length === 0 && ( 
+              <p className="fs-3 text-center text-white mt-4">No nearby service providers found.</p>
+            )}
+          </div>
+                    </div>
+              ): currentSp?(
+                <span></span>
+              ):(
+                <span></span>
+      )}
+
       {currentUser? (
         <p className="fs-1 text-center text-white mt-4" data-aos="fade-up" data-aos-duration="1500" data-aos-easing="ease-in-out" id='sp'>Service Providers</p>
       ) :currentSp ? (
@@ -76,6 +155,7 @@ function Home() {
               <div>Rs. {user.price}</div>
               <div>{user.work}</div>
             </div>
+            <div className='d-flex fs-4 justify-content-around'>Location: {user.location}</div>
             <p id='para1' className='bg-scroll'>{user.description}</p>
             <a aria-label="Whatsapp" target='_blank' href={whatsappUrl}><button className='btn btn2 shadow rounded-pill px-4 py-1 bg-info text-dark fs-5'>Contact Now</button></a></div>))
           }):null};

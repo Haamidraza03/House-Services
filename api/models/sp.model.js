@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const spSchema = new mongoose.Schema({
+let spSchema = new mongoose.Schema({
     uname:{
         type: String,
         required: true,
@@ -39,7 +39,22 @@ const spSchema = new mongoose.Schema({
         type: String,
         default:"Part Time",
     },
+    location:{
+        type: String,
+    },
+    pLoc: {
+        type: {
+            type: String,
+            enum: ['Point'],
+            default: 'Point'
+        },
+        coordinates: {
+            type: [Number],
+            default: [0,0]
+        }
+    }
 },{timestamps: true});
+spSchema.index({ pLoc: '2dsphere' });
 
 
 const Sp = mongoose.model('Service-Provider',spSchema);

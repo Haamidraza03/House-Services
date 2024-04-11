@@ -8,6 +8,7 @@ export const updateSp = async (req,res,next)=>{
     if (req.sp.id !==req.params.id){
         return next(errorHandler(401, "You can only update your Account!"));
     }
+    
     try {
         if (req.body.password){
             req.body.password = bcryptjs.hashSync(req.body.password,10);
@@ -25,11 +26,17 @@ export const updateSp = async (req,res,next)=>{
                     description:req.body.description,
                     phno:req.body.phno,
                     price:req.body.price,
-                    work:req.body.work,
+                    work:req.body.work, 
+                    location:req.body.location,
+                    pLoc:{
+                        type: 'Point',
+                        coordinates: [req.body.plong, req.body.plat]
+                    }
                 }
             },
             {new:true}
         );
+        console.log(req.body)
         const {password,...rest} = updatedSp._doc;
         res.status(200).json(rest);
     } catch (error) {
@@ -50,3 +57,38 @@ export const deleteSp = async (req,res,next)=>{
         next(error);
     }
 }
+
+//location sp
+    export const searchProviders = async (req, res) => {
+        const { latitude, longitude, query } = req.query;
+      
+        if (!latitude || !longitude) {
+          return res.status(400).json({ error: 'Latitude and longitude are required or search something' });
+        }
+      
+        try {
+          // query to find providers near the given coordinates
+          const providers = await Sp.find({
+            $or: [
+                { uname: {$regex: query, $options: 'i'} },
+                { prof: {$regex: query, $options: 'i'} },
+                { description: {$regex: query, $options: 'i'} },
+                { location: {$regex: query, $options: 'i'} },
+            ],
+            pLoc: {
+              $near: {
+                $geometry: {
+                  type: 'Point',
+                  coordinates: [parseFloat(longitude), parseFloat(latitude)]
+                },
+                $maxDistance: 50000 // Search radius in meters (adjust as needed)
+              }
+            }
+          });
+      
+          res.json(providers);
+        } catch (error) {
+          console.error('Error searching nearby providers:', error.message);
+          res.status(500).json({ error: 'Error searching nearby providers' });
+        }
+      };    

@@ -46,9 +46,25 @@ function Profile() {
     });
   };
 
-  const handleChange = (e)=>{
-    setFormData({...formData,[e.target.id]:e.target.value});
-  };
+  const handleChange = (e) => {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(async (position) => {
+            const  latitude = position.coords.latitude;
+            const  longitude = position.coords.longitude;
+            console.log("Received coordinates:", latitude, longitude);
+            setFormData({
+                ...formData,
+                plong: longitude,
+                plat: latitude,
+                [e.target.id]: e.target.value,
+            });
+        });
+    } else {
+        setFormData({ ...formData, [e.target.id]: e.target.value });
+        console.log("update successfull without location")
+    }
+};
+
 
   const handleSubmit = async (e)=>{
     e.preventDefault();
@@ -203,8 +219,24 @@ function Profile() {
                       <span></span>
                     ) :currentSp ? (
                       <span>
+                        <input type="text" id='location' placeholder='Enter Service location' data-aos="slide-up" data-aos-duration="1700" data-aos-easing="ease-in-out" className='px-3 py-2 mt-1 rounded-3 w-50' onChange={handleChange} /> <br />
+                      </span>
+                    ):(
+                      <span></span>
+                  )}
+                  {currentUser? (
+                      <span></span>
+                    ) :currentSp ? (
+                      <span>
                         <textarea rows={3} defaultValue={ currentSp.description} type="text" id='description' data-aos="slide-up" data-aos-duration="2000" data-aos-easing="ease-in-out" placeholder='Description' style={{textAlign:'justify'}} className='px-3 py-2 mt-1 rounded-3 w-50' onChange={handleChange} /> <br />
                       </span>
+                    ):(
+                      <span></span>
+                  )}
+                  {currentUser? (
+                      <span></span>
+                    ) :currentSp ? (
+                      <span onClick={handleChange} data-aos="slide-up" data-aos-duration="1000" data-aos-easing="ease-in-out" className='text-danger col-md-5 fs-4' style={{cursor:"pointer"}}>Get My Location <br /></span> 
                     ):(
                       <span></span>
                   )}

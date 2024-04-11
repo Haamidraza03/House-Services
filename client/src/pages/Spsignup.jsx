@@ -6,6 +6,7 @@ function Spsignup() {
   const [error,setError] = useState(false);
   const [loading,setLoading] = useState(false);
   const navigate = useNavigate();
+  
   const handleChange =(e)=>{
     setFormData({...formData,[e.target.id]:e.target.value});
   }

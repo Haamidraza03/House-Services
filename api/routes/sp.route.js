@@ -1,5 +1,5 @@
 import express from 'express';
-import {updateSp,deleteSp} from '../controllers/sp.controller.js';
+import {updateSp,deleteSp,searchProviders} from '../controllers/sp.controller.js';
 import { verifyToken } from '../utils/verifySp.js';
 import Sp from '../models/sp.model.js';
 
@@ -20,5 +20,7 @@ router.get('/getsps',  async (req, res) => {
    });
 router.post("/update/:id", verifyToken, updateSp);
 router.delete("/delete/:id", verifyToken, deleteSp);
+router.get("/searchProviders", searchProviders);
+
 
 export default router;
