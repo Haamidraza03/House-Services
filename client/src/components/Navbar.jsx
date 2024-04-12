@@ -21,9 +21,9 @@ function BasicExample() {
             <Link to="/contact" className='fs-5 nav-link active me-3'>Contact Us</Link>
             <Link to="/profile" className='fs-5 nav-link active'>
               {currentSp ? (
-                <img src={currentSp.profilePicture} alt="profile" width="43" className='rounded-circle' />
+                <img src={currentSp.profilePicture} title='Your Profile' alt="profile" width="43" className='rounded-circle' />
               ) : currentUser ? (
-                <img src={currentUser.profilePicture} alt="profile" width="43" className='rounded-circle' />
+                <img src={currentUser.profilePicture} title='Your Profile' alt="profile" width="43" className='rounded-circle' />
               ) : (
                 <li>Login/SignUp</li>
               )}

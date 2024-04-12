@@ -23,8 +23,8 @@ function Glogsin() {
           </div>
         </div>
         <div className="row justify-content-center">
-          <div className="col-md-1 rounded-circle">
-          <center><Link to="/"><img src={imglog} className='img-fluid rounded-circle mb-0' data-aos="flip-right" data-aos-duration="1500" data-aos-easing="ease-in-out" /></Link></center>
+          <div className="col-md-1 rounded-circle" id='homerender'>
+          <center><Link to="/"><img src={imglog} title='Go to Home Page' className='img-fluid rounded-circle mb-0' data-aos="flip-right" data-aos-duration="1500" data-aos-easing="ease-in-out" /></Link></center>
           </div>
         </div>
     </div>

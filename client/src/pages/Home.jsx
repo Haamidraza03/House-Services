@@ -95,26 +95,20 @@ function Home(props) {
 
         {currentUser ? (
         <div>
-          <p className="fs-1 text-center text-white">
+          <p className="fs-1 text-center text-white mb-0">
           <span style={{color:'rgb(255, 183, 0)'}}>Search</span> Our <span className='text-info'>Service Providers</span>
           </p>
           <div className="row justify-content-center p-5 mt-0">
-            <div className="col-md-3 mt-1">
+            <div className="col-md-7 mt-0 d-flex" id='loc'>
             <select id="locationSelect" className='rounded-pill px-4 py-1 mt-1 fs-5' onChange={handleLocationChange} value={selectedLocation}>
-              <option value="" className="fs-5 text-center text-black mt-4">Select Location</option>
+              <option value="" className="fs-5 text-center text-black mt-2">Select Location</option>
               {locations.map((location) => (
                 <option key={location.id} value={location.id}>{location.placeName}</option>
               ))}
             </select>
-            </div>
-            <div className="d-flex justify-content-center col-md-7 mt-1">
-            <div className="col-md-3">
-              <input type='text' className='shadow rounded-pill px-4 py-1 text-dark fs-5' placeholder='Search' value={searchQuery}
+            <input id='locs' type='text' className='shadow rounded-pill px-4 py-1 text-dark fs-5' placeholder='Search' value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)} />
-            </div>
-            <div className="col-md-3">
               <button className='btn btn2 shadow rounded-pill px-4 py-1 bg-info text-dark fs-5' onClick={handleSearch} >Search</button>
-            </div>
             </div>
           
           </div>
