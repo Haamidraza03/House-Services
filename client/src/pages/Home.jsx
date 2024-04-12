@@ -94,19 +94,31 @@ function Home(props) {
         </div>
 
         {currentUser ? (
-          <div>
-          <div className="row row-cols-md-3 justify-content-evenly mt-4 mx-4">
-          <select id="locationSelect" onChange={handleLocationChange} value={selectedLocation}>
-            <option value="" className="fs-5 text-center text-black mt-4">Select Location</option>
-            {locations.map((location) => (
-              <option key={location.id} value={location.id}>{location.placeName}</option>
-            ))}
-          </select>
-          <input type='text' className='shadow rounded-pill px-4 py-1 bg-info text-dark fs-5' placeholder='Search' value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)} />
-          <button className='btn btn2 shadow rounded-pill px-4 py-1 bg-info text-dark fs-5' onClick={handleSearch} >Search</button>
+        <div>
+          <p className="fs-1 text-center text-white">
+          <span style={{color:'rgb(255, 183, 0)'}}>Search</span> Our <span className='text-info'>Service Providers</span>
+          </p>
+          <div className="row justify-content-center p-5 mt-0">
+            <div className="col-md-3 mt-1">
+            <select id="locationSelect" className='rounded-pill px-4 py-1 mt-1 fs-5' onChange={handleLocationChange} value={selectedLocation}>
+              <option value="" className="fs-5 text-center text-black mt-4">Select Location</option>
+              {locations.map((location) => (
+                <option key={location.id} value={location.id}>{location.placeName}</option>
+              ))}
+            </select>
+            </div>
+            <div className="d-flex justify-content-center col-md-7 mt-1">
+            <div className="col-md-3">
+              <input type='text' className='shadow rounded-pill px-4 py-1 text-dark fs-5' placeholder='Search' value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)} />
+            </div>
+            <div className="col-md-3">
+              <button className='btn btn2 shadow rounded-pill px-4 py-1 bg-info text-dark fs-5' onClick={handleSearch} >Search</button>
+            </div>
+            </div>
+          
           </div>
-          <div className="row row-cols-md-3 justify-content-evenly mt-4 bg-dark py-2 px-4 rounded-top-pill rounded-bottom-pill">
+          <div className="row row-cols-md-3 justify-content-evenly bg-dark py-2 px-4 rounded-top-pill rounded-bottom-pill">
             {searchResults.length > 0 && searchResults?searchResults.map((user)=>{
               const whatsappUrl = `whatsapp://send?phone=${user.phno}&text=Hello%20I%20Want%20to%20know%20more%20about%20your%20charges%20for%20your%20House-Services%20as%20${user.prof} !`;
             return((<div key={user._id} className="col-md-3 py-3 px-3 me-3 border border-info shadow rounded-4 mt-5 text-center text-white" data-aos="zoom-in" data-aos-duration="1000" data-aos-easing="ease-in-out">
@@ -127,7 +139,7 @@ function Home(props) {
               <p className="fs-3 text-center text-white mt-4">No nearby service providers found.</p>
             )}
           </div>
-                    </div>
+        </div>
               ): currentSp?(
                 <span></span>
               ):(
