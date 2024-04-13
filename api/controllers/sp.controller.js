@@ -1,6 +1,9 @@
+import mongoose from "mongoose";
 import Sp from "../models/sp.model.js";
 import { errorHandler } from "../utils/error.js";
 import bcryptjs from "bcryptjs";
+
+const {ObjectId} = mongoose.Types;
 
 // update sp
 
@@ -59,36 +62,53 @@ export const deleteSp = async (req,res,next)=>{
 }
 
 //location sp
-    export const searchProviders = async (req, res) => {
-        const { latitude, longitude, query } = req.query;
+export const searchProviders = async (req, res) => {
+    const { latitude, longitude, query } = req.query;
       
-        if (!latitude || !longitude) {
-          return res.status(400).json({ error: 'Latitude and longitude are required or search something' });
-        }
+    if (!latitude || !longitude) {
+        return res.status(400).json({ error: 'Latitude and longitude are required or search something' });
+    }
       
-        try {
-          // query to find providers near the given coordinates
-          const providers = await Sp.find({
-            $or: [
-                { uname: {$regex: query, $options: 'i'} },
-                { prof: {$regex: query, $options: 'i'} },
-                { description: {$regex: query, $options: 'i'} },
-                { location: {$regex: query, $options: 'i'} },
-            ],
-            pLoc: {
-              $near: {
+    try {
+        // query to find providers near the given coordinates
+        const providers = await Sp.find({
+        $or: [
+            { uname: {$regex: query, $options: 'i'} },
+            { prof: {$regex: query, $options: 'i'} },
+            { description: {$regex: query, $options: 'i'} },
+            { location: {$regex: query, $options: 'i'} },
+        ],
+        pLoc: {
+            $near: {
                 $geometry: {
                   type: 'Point',
                   coordinates: [parseFloat(longitude), parseFloat(latitude)]
                 },
                 $maxDistance: 50000 // Search radius in meters (adjust as needed)
-              }
             }
-          });
-      
-          res.json(providers);
-        } catch (error) {
-          console.error('Error searching nearby providers:', error.message);
-          res.status(500).json({ error: 'Error searching nearby providers' });
         }
-      };    
+        });   
+        res.json(providers);
+    } catch (error) {
+        console.error('Error searching nearby providers:', error.message);
+        res.status(500).json({ error: 'Error searching nearby providers' });
+    }
+}; 
+
+// Provider profile details
+export const getProviderById = async (req, res) => {
+    const {providerId} = req.params;
+    console.log(providerId)
+    try{
+        // const providerId = mongoose.Types.ObjectId(pr);
+        const provider = await Sp.findById(providerId);
+        if(!provider) {
+            return res.status(404).json({error: 'Provider not found'})
+        }
+        res.status(200).json(provider);
+    } catch(error) {
+        console.error('Error fetching provider details of :', error.message)
+    }
+}
+      
+    
