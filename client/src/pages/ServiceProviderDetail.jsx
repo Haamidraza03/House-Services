@@ -22,7 +22,6 @@ const ServiceProviderDetail = () => {
       setProvider(data);
       setPhoneno(data.phno);
       setprofess(data.prof);
-      console.log(data);
     } catch (error) {
       console.error('Error fetching provider details:', error.message);
     } 
@@ -50,24 +49,25 @@ const ServiceProviderDetail = () => {
           <Navbar/>
           <div className="" id='herotop' style={{marginTop:"80px"}}>
             <div className='container mt-4'>
-              <div className='row'>
-                <div className='col-md-8'>
-                  <img src={provider.profilePicture} className='img-fluid rounded' alt='Provider Profile'/>
+              <div className='row justify-content-evenly'>
+                <div className='col-md-5 mt-5'>
+                  <img src={provider.profilePicture} className='img-fluid rounded-circle' data-aos="zoom-in" data-aos-duration="2000" data-aos-easing="ease-in-out" alt='Provider Profile'/>
                 </div>
-                <div className='col-md-8 py-3 px-3 me-3 border border-info shadow rounded-4 mt-5 text-center text-white' data-aos="zoom-in" data-aos-duration="1000" data-aos-easing="ease-in-out">
-                  <h1>Name: {provider.uname}</h1>
-                  <p>Profession: {provider.prof}</p>
-                  <p>Service Charge: {provider.price}</p>
-                  <p>Service Type: {provider.work}</p>
-                  <p>Location: {provider.location}</p>
-                  <p>Description: {provider.description}</p>
-                  {/* Display other provider details */}
+                <div className='col-md-5 py-3 px-3 border border-info shadow-md mt-4 rounded-4 text-center text-white' data-aos="fade-up" data-aos-duration="2500" data-aos-easing="ease-in-out">
+                  <h1>Username: {provider.uname}</h1>
+                  <p className='fs-4'>Email: {provider.email}</p>
+                  <p className='fs-4'>Profession: {provider.prof}</p>
+                  <p className='fs-4'>Service Charge: {provider.price}</p>
+                  <p className='fs-4'>Service Type: {provider.work}</p>
+                  <p className='fs-4'>Location: {provider.location}</p>
+                  <p className='fs-4' id='para1'>Description: {provider.description}</p> 
+                  {/* Display other provider details  */}
                 </div>
               </div>
             </div>
             <div className='d-flex justify-content-center'>
-            <button onClick={handleBackButtonClick} className='btn btn2 shadow rounded-pill px-4 py-1 bg-info text-dark fs-5 mt-5'>Go Back</button>
-            <button onClick={handleContact} className='btn btn2 shadow rounded-pill px-4 py-1 bg-info text-dark fs-5 mt-5'>Contact Now</button>
+            <button onClick={handleBackButtonClick} className='btn btn2 shadow rounded-pill px-4 py-1 bg-info text-dark fs-5 mt-3' data-aos="fade-up" data-aos-duration="2000" data-aos-easing="ease-in-out">Go Back</button>
+            <button onClick={handleContact} className='btn btn2 shadow rounded-pill px-4 py-1 bg-info text-dark fs-5 ms-2 mt-3' data-aos="fade-up" data-aos-duration="2000" data-aos-easing="ease-in-out">Contact Now</button>
             </div>
           </div>
           </>

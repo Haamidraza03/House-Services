@@ -3,7 +3,7 @@ import Sp from "../models/sp.model.js";
 import { errorHandler } from "../utils/error.js";
 import bcryptjs from "bcryptjs";
 
-const {ObjectId} = mongoose.Types;
+// const {ObjectId} = mongoose.Types; //why this written if not implemented? This was giving //unnecessary objects in the console so i commented it.
 
 // update sp
 
@@ -98,7 +98,7 @@ export const searchProviders = async (req, res) => {
 // Provider profile details
 export const getProviderById = async (req, res) => {
     const {providerId} = req.params;
-    console.log(providerId)
+    // console.log(providerId)
     try{
         // const providerId = mongoose.Types.ObjectId(pr);
         const provider = await Sp.findById(providerId);

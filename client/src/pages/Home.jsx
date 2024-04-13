@@ -82,9 +82,9 @@ function Home() {
       <Navbar/>
       <div className="row justify-content-center" id='herotop' style={{marginTop:"80px"}}>
       {currentUser ? (
-                <p className='mt-5 text-white fs-3 text-center'>Welcome {currentUser.uname}&#128075;</p>
+                <p className='mt-5 text-white fs-3 text-center' data-aos="fade-up" data-aos-duration="1500" data-aos-easing="ease-in-out">Welcome {currentUser.uname}&#128075;</p>
               ): currentSp?(
-                <p className='mt-5 text-white fs-3 text-center'>Welcome {currentSp.uname}&#128075;</p>
+                <p className='mt-5 text-white fs-3 text-center' data-aos="fade-up" data-aos-duration="1500" data-aos-easing="ease-in-out">Welcome {currentSp.uname}&#128075;</p>
               ):(
                 <span></span>
       )}
@@ -107,15 +107,15 @@ function Home() {
           <div className="row justify-content-center p-5 mt-0">
             <div className="col-md-7 mt-0 d-flex" id='loc'>
 
-            <select id="locationSelect" className='rounded-pill px-4 py-1 mt-1 fs-5' onChange={handleLocationChange} value={selectedLocation}>
+            <select id="locationSelect" className='rounded-start-pill rounded-end px-4 py-1 mt-1 fs-5' onChange={handleLocationChange} value={selectedLocation}>
               <option value="" className="fs-5 text-center text-black mt-2">Select Location</option>
               {locations.map((location) => (
                 <option key={location.id} value={location.id}>{location.placeName}</option>
               ))}
             </select>
-            <input id='locs' type='text' className='shadow rounded-pill px-4 py-1 text-dark fs-5' placeholder='Search' value={searchQuery}
+            <input id='locs' type='text' className='shadow border-end-0 rounded-start-pill px-4 text-dark fs-5' placeholder='Search' value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)} />
-              <button className='btn btn2 shadow rounded-pill px-4 py-1 bg-info text-dark fs-5' onClick={handleSearch} >Search</button>
+              <button className='btn2 shadow border-start-0 rounded-end-pill px-4 bg-info text-dark fs-5' onClick={handleSearch} >Search</button>
             </div>
           
           </div>
@@ -134,8 +134,15 @@ function Home() {
             </div>
             <div className='d-flex fs-4 justify-content-around'>Location: {user.location}</div>
             <p id='para1' className='bg-scroll'>{user.description}</p>
-            <a aria-label="Whatsapp" target='_blank' href={whatsappUrl}><button className='btn btn2 shadow rounded-pill px-4 py-1 bg-info text-dark fs-5'>Contact Now</button></a>
-            <button onClick={() => handleCardClick(user._id)} className='btn btn2 shadow rounded-pill px-4 py-1 bg-info text-dark fs-5 mt-3'>View Profile</button></div>))
+            <div className="d-flex justify-content-around">
+              <span>
+              <a aria-label="Whatsapp" target='_blank' href={whatsappUrl}><button className='btn btn2 shadow rounded-pill px-4 py-1 bg-info text-dark'>Contact Now</button></a>
+              </span>
+              <span>
+              <button onClick={() => handleCardClick(user._id)} className='btn btn2 shadow rounded-pill px-4 py-1 bg-info text-dark'>View Profile</button>
+              </span>
+            </div>
+            </div>))
           })
            : null} {showResults && searchQuery.trim() !== '' || showResults &&  searchResults.length === 0 && ( 
               <p className="fs-3 text-center text-white mt-4">No nearby service providers found.</p>
@@ -143,7 +150,6 @@ function Home() {
           </div>
           </div>
         </div>
->>>>>>> 2343e4a0a9fba40085fc831566efc9452d821782
               ): currentSp?(
                 <span></span>
               ):(
@@ -153,7 +159,7 @@ function Home() {
       {currentUser? (
         <p className="fs-1 text-center text-white mt-4" data-aos="fade-up" data-aos-duration="1500" data-aos-easing="ease-in-out" id='sp'>Service Providers</p>
       ) :currentSp ? (
-        <p className="fs-1 text-center text-white mt-4" data-aos="fade-up" data-aos-duration="1500" data-aos-easing="ease-in-out" id='sp'>Users</p>
+        <p className="fs-1 text-center text-white mt-4" data-aos="fade-up" data-aos-duration="1500" data-aos-easing="ease-in-out" id='sp'><span className="text-info">Message</span> from Developers</p>
       ):(
         <p className="fs-1 text-center text-white mt-4" data-aos="fade-up" data-aos-duration="1500" data-aos-easing="ease-in-out" id='sp'>Service Providers</p>
       )}
@@ -173,12 +179,31 @@ function Home() {
             </div>
             <div className='d-flex fs-4 justify-content-around'>Location: {user.location}</div>
             <p id='para1' className='bg-scroll'>{user.description}</p>
-            <a aria-label="Whatsapp" target='_blank' href={whatsappUrl}><button className='btn btn2 shadow rounded-pill px-4 py-1 bg-info text-dark fs-5'>Contact Now</button></a>
-            <button onClick={() => handleCardClick(user._id)} className='btn btn2 shadow rounded-pill px-4 py-1 bg-info text-dark fs-5 mt-3'>View Profile</button>
+            <div className="d-flex justify-content-around">
+              <span>
+              <a aria-label="Whatsapp" target='_blank' href={whatsappUrl}><button className='btn btn2 shadow rounded-pill px-4 py-1 bg-info text-dark'>Contact Now</button></a>
+              </span>
+              <span>
+              <button onClick={() => handleCardClick(user._id)} className='btn btn2 shadow rounded-pill px-4 py-1 bg-info text-dark'>View Profile</button>
+              </span>
+            </div>
             </div>))
           }):null};
           </div>):currentSp ? (
-            <p className="fs-4 text-center text-white mt-4" data-aos="fade-up" data-aos-duration="2500" data-aos-easing="ease-in-out" id='sp'>No User Requests!</p>
+            <div className='row justify-content-center'>
+              <div className="col-md-6 text-white fs-5 p-3">
+                <h3 data-aos="fade-up" data-aos-duration="1500" data-aos-easing="ease-in-out" className='p-3'>Dear Esteemed <span style={{color:"gold"}}>{currentSp.uname}</span>, </h3>
+                <p id='para1' data-aos="fade-up" data-aos-duration="1500" data-aos-easing="ease-in-out" className='p-3'>I hope this message finds you well.😊We are writing to express our deepest gratitude 🙏 for your continued support and the exceptional services you have been providing for our web application.
+
+                Our team of developers has been working tirelessly💪to ensure the smooth operation and continuous improvement of our web application. Their dedication and hard work have played a significant role in the success of our application, and we believe it is only fitting that they <span className="text-info">receive a token of appreciation for their efforts. </span></p>
+
+                <p id='para1' data-aos="fade-up" data-aos-duration="1500" data-aos-easing="ease-in-out" className='p-3'>In light of this, <span className="text-warning">we kindly request that 5% of the income 💰 you have earned</span> from our web application be directed to the provided UPI link i.e: <span style={{color:"lightgreen"}}>haamidraza03@oksbi</span> . This gesture will not only serve as a reward for our developers but also as a source of motivation and encouragement for them to continue delivering their best work.</p>
+
+                <p id='para1' data-aos="fade-up" data-aos-duration="1500" data-aos-easing="ease-in-out" className='p-3'>We believe that this initiative will foster a sense of unity and shared success among all parties involved in the development and operation of our web application. After all, our collective efforts have led to the creation of an application that we can all be proud of.🎉
+
+                Thank you for considering our request. We look forward to your positive response and continued collaboration.🤝</p>
+              </div>
+            </div>
          ):(
           <div>
             <div className="row justify-content-evenly mt-4 bg-dark py-2 px-4 rounded-top-pill">

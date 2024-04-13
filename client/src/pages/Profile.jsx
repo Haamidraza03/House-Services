@@ -164,11 +164,11 @@ function Profile() {
         <Navbar/>
         <div className='text-white' style={{marginTop:'80px'}}>
             <div className="row justify-content-center">
-              <div className="col-md-8">
+              <div className="col-md-9">
                 <h1 className='text-center mt-1' data-aos="fade-down" data-aos-duration="1000" data-aos-easing="ease-in-out">Profile</h1>
                 <center><form onSubmit={handleSubmit}>
                   <input type="file" ref={fileRef} hidden accept='image/*' onChange={(e)=> setImage(e.target.files[0])} />
-                  <center><img src={currentUser ? currentUser.profilePicture : currentSp ? currentSp.profilePicture : formData.profilePicture} style={{cursor:'pointer', width:'150px'}} alt="Profile Pic" className='img-fluid col-md-4 rounded-circle' onClick={() => fileRef.current.click()} />
+                  <center><img src={currentUser ? currentUser.profilePicture : currentSp ? currentSp.profilePicture : formData.profilePicture} style={{cursor:'pointer', width:'180px'}} alt="Profile Pic" className='img-fluid col-md-4 rounded-circle' onClick={() => fileRef.current.click()} />
                   <p>
                   {imageError ? (
                     <span className='text-danger'>Error Uploading Image (File size must be less than 2 MB)</span>) : imagePercent > 0 && imagePercent < 100 ? (
@@ -219,8 +219,15 @@ function Profile() {
                       <span></span>
                     ) :currentSp ? (
                       <span>
-                        <input type="text" id='location' placeholder='Enter Service location' data-aos="slide-up" data-aos-duration="1700" data-aos-easing="ease-in-out" className='px-3 py-2 mt-1 rounded-3 w-50' onChange={handleChange} /> <br />
+                        <input type="text" id='location' placeholder='Enter Your location' data-aos="slide-up" data-aos-duration="1700" data-aos-easing="ease-in-out" className='px-3 py-2 mt-1 rounded-3 w-50' onChange={handleChange} /> <br />
                       </span>
+                    ):(
+                      <span></span>
+                  )}
+                  {currentUser? (
+                      <span></span>
+                    ) :currentSp ? (
+                      <span onClick={handleChange} data-aos="fade-up" data-aos-duration="1700" data-aos-easing="ease-in-out" className='text-info col-md-5 fs-4' style={{cursor:"pointer"}}>Get My Location <br /></span> 
                     ):(
                       <span></span>
                   )}
@@ -230,13 +237,6 @@ function Profile() {
                       <span>
                         <textarea rows={3} defaultValue={ currentSp.description} type="text" id='description' data-aos="slide-up" data-aos-duration="2000" data-aos-easing="ease-in-out" placeholder='Description' style={{textAlign:'justify'}} className='px-3 py-2 mt-1 rounded-3 w-50' onChange={handleChange} /> <br />
                       </span>
-                    ):(
-                      <span></span>
-                  )}
-                  {currentUser? (
-                      <span></span>
-                    ) :currentSp ? (
-                      <span onClick={handleChange} data-aos="slide-up" data-aos-duration="1000" data-aos-easing="ease-in-out" className='text-danger col-md-5 fs-4' style={{cursor:"pointer"}}>Get My Location <br /></span> 
                     ):(
                       <span></span>
                   )}
