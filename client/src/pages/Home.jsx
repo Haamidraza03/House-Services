@@ -100,20 +100,20 @@ function Home() {
         {currentUser ? (
           <div>
             <div>
-          <p className="fs-1 text-center text-white mb-0">
-          <span style={{color:'rgb(255, 183, 0)'}}>Search</span> Our <span className='text-info'>Service Providers</span>
+          <p className="fs-1 text-center text-white mb-0" data-aos="fade-up" data-aos-duration="1500" data-aos-easing="ease-in-out">
+          <span className='text-warning'>Search</span> Our <span className='text-info'>Service Providers</span>
           </p>
-          <div className="row justify-content-center p-5 mt-0">
-            <div className="col-md-7 mt-0 d-flex" id='loc'>
-              <select id="locationSelect" className='rounded-pill px-4 py-1 mt-1 fs-5' onChange={handleLocationChange} value={selectedLocation}>
+          <div className="row justify-content-center px-4 py-3 mt-0">
+            <div className="col-md-6 mt-0 d-flex justify-content-center" id='loc'>
+              <select id="locationSelect" className='rounded-pill px-4 py-1 mt-1 mb-1 fs-5' onChange={handleLocationChange} value={selectedLocation}>
                 <option value="" className="fs-5 text-center text-black mt-2">Select Location</option>
                 {locations.map((location) => (
                   <option key={location.id} value={location.id}>{location.placeName}</option>
                 ))}
               </select>
-              <input id='locs' type='text' className='shadow rounded-pill px-4 py-1 text-dark fs-5' placeholder='Search' value={searchQuery}
+              <input id='locs' type='text' className='shadow rounded-pill px-4 ms-3 text-dark fs-5' placeholder='Search' value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)} />
-              <button className='btn btn2 shadow rounded-pill px-4 py-1 bg-info text-dark fs-5' onClick={handleSearch} >Search</button>
+              <button className='btn2 shadow rounded-pill px-4 py-1 bg-info text-dark' onClick={handleSearch} >Search</button>
             </div>        
           </div>
 
