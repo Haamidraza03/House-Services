@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import Sp from "../models/sp.model.js";
+import Fb from "../models/feedback.model.js";
 import { errorHandler } from "../utils/error.js";
 import bcryptjs from "bcryptjs";
 
@@ -110,5 +111,44 @@ export const getProviderById = async (req, res) => {
         console.error('Error fetching provider details of :', error.message)
     }
 }
-      
+    
+// Add feedback
+export const addFeedback = async (req, res) => {
+    try {
+        const { serviceProviderId } = req.params;
+        const { text, rating, uname } = req.body;
+    
+        // Check if service provider exists
+        const serviceProvider = await Sp.findById(serviceProviderId);
+        if (!serviceProvider) {
+          return res.status(404).json({ error: 'Service provider not found' });
+        }
+    
+        // Create new feedback
+        const newFeedback = new Fb({ text, rating, uname, serviceProvider: serviceProviderId });
+        await newFeedback.save();
+    
+        // Add feedback reference to service provider
+        Sp.feedbacks.push(newFeedback);
+        await serviceProvider.save();
+    
+        res.status(201).json(newFeedback);
+    } catch (error) {
+        console.error('Error adding feedback:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+}
+
+// Get feedbacks
+export const getFeedbacksForSp = async (req, res) => {
+    try {
+        const { serviceProviderId } = req.params;
+        const feedbacks = await Fb.find({ serviceProvider: serviceProviderId });
+    
+        res.json(feedbacks);
+      } catch (error) {
+        console.error('Error fetching feedbacks:', error);
+        res.status(500).json({ error: 'Internal server error' });
+      }
+}
     

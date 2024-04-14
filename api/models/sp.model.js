@@ -1,4 +1,5 @@
-import mongoose from 'mongoose';
+import mongoose, { Schema } from 'mongoose';
+import Fb from "../models/feedback.model.js";
 
 let spSchema = new mongoose.Schema({
     uname:{
@@ -52,7 +53,11 @@ let spSchema = new mongoose.Schema({
             type: [Number],
             default: [0,0]
         }
-    }
+    },
+    feedbacks: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Fb'
+    }]
 },{timestamps: true});
 spSchema.index({ pLoc: '2dsphere' });
 

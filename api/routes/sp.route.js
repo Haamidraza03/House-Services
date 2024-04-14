@@ -1,5 +1,5 @@
 import express from 'express';
-import {updateSp,deleteSp,searchProviders, getProviderById} from '../controllers/sp.controller.js';
+import {updateSp,deleteSp,searchProviders, getProviderById, addFeedback, getFeedbacksForSp} from '../controllers/sp.controller.js';
 import { verifyToken } from '../utils/verifySp.js';
 import Sp from '../models/sp.model.js';
 
@@ -22,6 +22,7 @@ router.post("/update/:id", verifyToken, updateSp);
 router.delete("/delete/:id", verifyToken, deleteSp);
 router.get("/searchProviders", searchProviders);
 router.get("/:providerId", getProviderById);
-
+router.post("/:serviceProviderId/feedbacks", addFeedback);
+router.get("/:serviceProviderId/feedbacks", getFeedbacksForSp);
 
 export default router;

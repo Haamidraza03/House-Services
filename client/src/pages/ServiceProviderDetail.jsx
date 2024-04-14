@@ -7,13 +7,47 @@ const ServiceProviderDetail = () => {
   const [provider, setProvider] = useState(null);
   const [phoneno, setPhoneno] = useState('');
   const [profess, setprofess] = useState('');
+  const [feedbacks, setFeedbacks] = useState([]);
+  const [newFeedback, setNewFeedback] = useState({ text: '', rating: 0 });
 
   useEffect(() => {
     if (providerId) {
       // Fetch provider details based on ID from your API or database
       fetchProviderDetails(providerId);
+      fetch(`/api/sp/${providerId}/feedbacks`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then((data) => setFeedbacks(data))
+      .catch((error) => console.error('Error fetching feedbacks:', error));
     }
   }, [providerId]); // Make sure to include providerId in the dependency array
+
+  const handleFeedbackSubmit = (event) => {
+    event.preventDefault();
+
+    fetch(`/api/sp/${providerId}/feedbacks`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(newFeedback),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setFeedbacks([...feedbacks, data]); // Add new feedback to state
+        setNewFeedback({ text: '', rating: 0 }); // Clear the form
+      })
+      .catch((error) => console.error('Error submitting feedback:', error));
+  };
 
   const fetchProviderDetails = async (providerId) => {
     try {
@@ -70,6 +104,56 @@ const ServiceProviderDetail = () => {
             <button onClick={handleContact} className='btn btn2 shadow rounded-pill px-4 py-1 bg-info text-dark fs-5 ms-2 mt-3' data-aos="fade-up" data-aos-duration="2000" data-aos-easing="ease-in-out">Contact Now</button>
             </div>
           </div>
+
+          <div>
+      {/* Existing Feedbacks */}
+      <div>
+      <h2 className="fs-1 text-white mb-0 mt-5 text-center" data-aos="zoom-in" data-aos-duration="1000" data-aos-easing="ease-in-out">Feedbacks:</h2>
+      <div className="row row-cols-md-3 justify-content-evenly bg-dark py-2 px-4 mt-5 rounded-top-pill rounded-bottom-pill">
+        {feedbacks.map((feedback) => (
+          <div className="col-md-3 py-3 px-3 me-3 border border-info shadow rounded-4 text-center text-white" data-aos="zoom-in" data-aos-duration="1000" data-aos-easing="ease-in-out"> 
+          <div key={feedback._id}>
+            {feedback.uname} says: <br />
+            {feedback.text} <br />
+            Rating: {feedback.rating}
+          </div>
+          </div>
+        ))}
+      </div>
+      </div>
+
+      {/* Feedback Form */}
+      <h2 className="fs-1 text-white mt-5 text-center" data-aos="zoom-in" data-aos-duration="1000" data-aos-easing="ease-in-out">Add Feedback:</h2>
+      <div className="row justify-content-center p-5 mt-0">
+        <div className="col-md-3 py-3 px-3 me-3 border border-info shadow rounded-4 text-center text-white" data-aos="zoom-in" data-aos-duration="1000" data-aos-easing="ease-in-out">
+      <form onSubmit={handleFeedbackSubmit}>
+        <input
+          type='text' className='rounded-4 px-4 py-1 mt-2 fs-5'
+          onChange={(e) => setNewFeedback({ ...newFeedback, uname: e.target.value })}
+          placeholder="Enter your username"
+          required
+        />
+        <textarea
+          value={newFeedback.text} className='rounded-4 px-4 py-1 mt-2 fs-5'
+          onChange={(e) => setNewFeedback({ ...newFeedback, text: e.target.value })}
+          placeholder="Enter your feedback"
+          required
+        /> <br />
+        <span className="fs-5 mt-2"> Give ratings: </span>
+        <input
+          type="number"
+          value={newFeedback.rating} className='rounded-4 px-4 py-1 fs-5'
+          onChange={(e) => setNewFeedback({ ...newFeedback, rating: e.target.value })}
+          placeholder="Enter rating (1-5)"
+          min="1"
+          max="5"
+          required
+        /> <br />
+        <button type="submit" className='btn btn2 shadow rounded-pill px-4 py-1 bg-info text-dark fs-5 mt-2'>Submit Feedback</button>
+      </form>
+      </div>
+      </div>
+    </div>
           </>
       ) : (
         <p>Loading...</p>
