@@ -39,9 +39,9 @@ app.use("/api/user", userRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/sp", spRoutes);
 
-app.get("/", (req, res) => {
-    res.send("Welcome");
-});
+// app.get("/", (req, res) => {
+//     res.send("Welcome");
+// });
 
 
 app.use((err, req, res, next) => {
