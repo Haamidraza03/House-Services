@@ -29,24 +29,24 @@ function About() {
         <div className="col-md-3 fs-5" data-aos="zoom-in" data-aos-duration="1500" data-aos-easing="ease-in-out">
           <center><img src={img2} alt="std1" className='img-fluid rounded-circle shadow' /></center>
           <center><h4 className='mt-2'>Haamid Raza Kazi</h4></center>
-          <p id='para1'>A passionate Web Developer and a student, currently pursuing B.E Computer Engineering from St. John College Of Engineering and Management.</p>
+          <p id='para1'>Dynamic Computer Engineering student passionate about emerging technologies, adept at crafting user-friendly interfaces, and driven to innovate in web development. Committed to learning, networking, and making significant contributions to the field.</p>
         </div>
         <div className="col-md-3 fs-5" data-aos="zoom-in" data-aos-duration="2000" data-aos-easing="ease-in-out">
           <center><img src={img3} alt="std2" className='img-fluid rounded-circle shadow' /></center>
           <center><h4 className='mt-2'>Sakshi Choudhary</h4></center>
-          <p id='para1'>A passionate Web Developer and a student, currently pursuing B.E Computer Engineering from St. John College Of Engineering and Management.</p>
+          <p id='para1'>Dynamic Computer Engineering student with a strong software development foundation and a passion for emerging technologies. Skilled in crafting user-friendly interfaces and solving technical challenges.</p>
         </div>
       </div>
       <div className="row justify-content-evenly text-white mt-4 p-4">
         <div className="col-md-3 fs-5" data-aos="zoom-in" data-aos-duration="2000" data-aos-easing="ease-in-out">
           <center><img src={img4} alt="std3" className='img-fluid rounded-circle shadow' /></center>
           <center><h4 className='mt-2'>Disha Bhandare</h4></center>
-          <p id='para1'>A passionate Web Developer and a student, currently pursuing B.E Computer Engineering from St. John College Of Engineering and Management.</p>
+          <p id='para1'>A computer engineering student ignited by a flair for crafting frontend projects that blend intuition with innovation. My passion? Creating user-friendly experiences that not only meet but exceed expectations, breathing life into ideas, one line of code at a time!</p>
         </div>
         <div className="col-md-3 fs-5" data-aos="zoom-in" data-aos-duration="2500" data-aos-easing="ease-in-out">
           <center><img src={img5} alt="std4" className='img-fluid rounded-circle shadow' /></center>
           <center><h4 className='mt-2'>Anjali Gupta</h4></center>
-          <p id='para1'>A passionate Web Developer and a student, currently pursuing B.E Computer Engineering from St. John College Of Engineering and Management.</p>
+          <p id='para1'>A Web Developer and a student, currently pursuing B.E Computer Engineering from St. John College Of Engineering and Management.</p>
         </div>
       </div>
 

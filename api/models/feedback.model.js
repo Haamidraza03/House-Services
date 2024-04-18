@@ -4,7 +4,6 @@ let fbSchema = new mongoose.Schema({
     text:{
         type: String,
         required: true,
-        unique: true
     },
     rating:{
         type: Number,
@@ -15,7 +14,6 @@ let fbSchema = new mongoose.Schema({
     uname: {
         type: String,
         required: true,
-        unique: true 
     },
     serviceProvider: {
         type: Schema.Types.ObjectId,

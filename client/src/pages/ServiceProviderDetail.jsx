@@ -128,10 +128,11 @@ const ServiceProviderDetail = () => {
       <form onSubmit={handleFeedbackSubmit}>
         <input
           type='text' className='rounded-4 px-4 py-1 mt-2 fs-5'
+          title='*Please modify your username just here if you are not giving the feedback for the first time.'
           onChange={(e) => setNewFeedback({ ...newFeedback, uname: e.target.value })}
           placeholder="Enter your username"
           required
-        />
+        /> 
         <textarea
           value={newFeedback.text} className='rounded-4 px-4 py-1 mt-2 fs-5'
           onChange={(e) => setNewFeedback({ ...newFeedback, text: e.target.value })}
