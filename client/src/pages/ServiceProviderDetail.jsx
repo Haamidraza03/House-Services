@@ -83,7 +83,7 @@ const ServiceProviderDetail = () => {
           <Navbar/>
           <div className="" id='herotop' style={{marginTop:"80px"}}>
             <div className='container mt-4'>
-              <div className='row justify-content-evenly'>
+              <div className='row justify-content-evenly p-3'>
                 <div className='col-md-5 mt-5'>
                   <img src={provider.profilePicture} className='img-fluid rounded-circle' data-aos="zoom-in" data-aos-duration="2000" data-aos-easing="ease-in-out" alt='Provider Profile'/>
                 </div>
@@ -110,14 +110,14 @@ const ServiceProviderDetail = () => {
       <div>
       <h2 className="fs-1 text-white mb-0 mt-5 text-center" data-aos="zoom-in" data-aos-duration="1000" data-aos-easing="ease-in-out">Feedbacks:</h2>
       <div className="row row-cols-md-3 justify-content-evenly bg-dark py-2 px-4 mt-5 rounded-top-pill rounded-bottom-pill">
-        {feedbacks.map((feedback) => (
-          <div className="col-md-3 py-3 px-3 me-3 border border-info shadow rounded-4 text-center text-white" data-aos="zoom-in" data-aos-duration="1000" data-aos-easing="ease-in-out"> 
-          <div key={feedback._id}>
+      {feedbacks.map((feedback) => (
+        <div key={feedback._id} className="col-md-3 py-3 mt-4 px-3 me-3 border border-info shadow rounded-4 text-center text-white" data-aos="zoom-in" data-aos-duration="1000" data-aos-easing="ease-in-out"> 
+          <div>
           <p id="para1"><span className="fs-5 text-warning">{feedback.uname} says:</span> &nbsp; {feedback.text}</p>
-            Rating: {feedback.rating}
+          Rating: {feedback.rating}
           </div>
-          </div>
-        ))}
+        </div>
+      ))}
       </div>
       </div>
 

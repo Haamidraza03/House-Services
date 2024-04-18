@@ -111,12 +111,12 @@ function Home() {
                   <option key={location.id} value={location.id}>{location.placeName}</option>
                 ))}
               </select>
-              <input id='locs' type='text' className='shadow rounded-pill px-4 py-1 text-dark fs-5' placeholder='Search' value={searchQuery}
+              <center><input id='locs' type='text' className='shadow rounded-pill px-4 py-1 text-dark fs-5' placeholder='Search' value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)} />
-              <button className='btn btn2 shadow rounded-pill px-4 py-1 bg-info text-dark fs-5' onClick={handleSearch} >Search</button>
+              <button className='btn2 shadow rounded-pill px-4 py-1 bg-info text-dark fs-5' onClick={handleSearch} >Search</button></center>
             </div>        
           </div>
-          <div className="row row-cols-md-3 justify-content-evenly bg-dark py-2 px-4 rounded-top-pill rounded-bottom-pill">
+          <div className="row row-cols-md-3 justify-content-evenly bg-dark py-2 px-5 rounded-top-pill rounded-bottom-pill">
             {searchResults.length > 0 && searchResults?searchResults.map((user)=>{ 
               const whatsappUrl = `whatsapp://send?phone=${user.phno}&text=Hello%20I%20Want%20to%20know%20more%20about%20your%20charges%20for%20your%20House-Services%20as%20${user.prof} !`;
             return((<div key={user._id} className="col-md-3 py-3 px-3 me-3 border border-info shadow rounded-4 mt-5 text-center text-white" data-aos="zoom-in" data-aos-duration="1000" data-aos-easing="ease-in-out">
@@ -161,7 +161,7 @@ function Home() {
         <p className="fs-1 text-center text-white mt-4" data-aos="fade-up" data-aos-duration="1500" data-aos-easing="ease-in-out" id='sp'>Service Providers</p>
       )}
 
-        {currentUser?(<div className="row row-cols-md-3 justify-content-evenly mt-4 bg-dark py-2 px-4 rounded-top-pill rounded-bottom-pill">
+        {currentUser?(<div className="row row-cols-md-3 justify-content-evenly mt-4 bg-dark py-2 px-5 rounded-top-pill rounded-bottom-pill">
             {serviceProviders.length > 0 && serviceProviders?serviceProviders.map((user)=>{
               const whatsappUrl = `whatsapp://send?phone=${user.phno}&text=Hello%20I%20Want%20to%20know%20more%20about%20your%20charges%20for%20your%20House-Services%20as%20${user.prof} !`;
             return((<div key={user._id} className="col-md-3 py-3 px-3 me-3 border border-info shadow rounded-4 mt-5 text-center text-white" data-aos="zoom-in" data-aos-duration="1000" data-aos-easing="ease-in-out">

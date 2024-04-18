@@ -18,14 +18,14 @@ function About() {
       The aim of house services web application is to benefit home owners and service providers alike by making it easier to find and book home services providing a way for service providers to find work and helping customers get high quality home services at a fair price.
       </div>
       <div className="text-center text-white fs-1 mt-5" data-aos="fade-up" data-aos-duration="1500" data-aos-easing="ease-in-out">Our Team</div>
-      <div className="row justify-content-center p-3 text-white mt-2">
+      <div className="row justify-content-center p-4 text-white mt-2">
         <div className="col-md-3 mt-3 fs-5" data-aos="zoom-in" data-aos-duration="2000" data-aos-easing="ease-in-out">
           <center><img src={img1} alt="mam" className='img-fluid rounded-circle shadow' /></center> 
           <center><h4 className='mt-2'>Ms. Deepika Nadar</h4></center>
           <p id='para1'>Assistant Professor at St. John College of Engineering and Management.</p>
         </div>
       </div>
-      <div className="row justify-content-evenly text-white mt-2 p-3">
+      <div className="row justify-content-evenly text-white mt-2 p-4">
         <div className="col-md-3 fs-5" data-aos="zoom-in" data-aos-duration="1500" data-aos-easing="ease-in-out">
           <center><img src={img2} alt="std1" className='img-fluid rounded-circle shadow' /></center>
           <center><h4 className='mt-2'>Haamid Raza Kazi</h4></center>
@@ -37,7 +37,7 @@ function About() {
           <p id='para1'>A passionate Web Developer and a student, currently pursuing B.E Computer Engineering from St. John College Of Engineering and Management.</p>
         </div>
       </div>
-      <div className="row justify-content-evenly text-white mt-4 p-3">
+      <div className="row justify-content-evenly text-white mt-4 p-4">
         <div className="col-md-3 fs-5" data-aos="zoom-in" data-aos-duration="2000" data-aos-easing="ease-in-out">
           <center><img src={img4} alt="std3" className='img-fluid rounded-circle shadow' /></center>
           <center><h4 className='mt-2'>Disha Bhandare</h4></center>
