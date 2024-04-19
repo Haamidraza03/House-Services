@@ -6,9 +6,9 @@ import Sp from '../models/sp.model.js';
 const router = express.Router();
 
 
-router.get('/',  async (req, res) => {
-    res.send('Welcome');
-});
+// router.get('/',  async (req, res) => {
+//     res.send('Welcome');
+// });
 router.get('/getsps',  async (req, res) => {
     try {
        const serviceProviders = await Sp.find();
