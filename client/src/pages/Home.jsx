@@ -132,8 +132,7 @@ function Home() {
             </div>
             <div className='d-flex fs-4 justify-content-around'>Location: {user.location}</div>
             <p id='para1' className='bg-scroll'>{user.description}</p>
-            <p id='para1'>Average Rating: {user.averageRating}</p>
-            <StarRating rating={user.averageRating}/>
+            <div className='mb-3'>Average Rating: {user.averageRating} <StarRating rating={user.averageRating}/> </div>
             <div className="d-flex justify-content-around">
               <span>
               <a aria-label="Whatsapp" target='_blank' href={whatsappUrl}><button className='btn btn2 shadow rounded-pill px-4 py-1 bg-info text-dark'>Contact Now</button></a>
