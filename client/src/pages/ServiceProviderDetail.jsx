@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom'; // Import useParams from react-router-dom
-import Navbar from "../components/Navbar"
+import Navbar from "../components/Navbar";
+import StarRating from '../components/StarRating';
 
 const ServiceProviderDetail = () => {
   const { providerId } = useParams(); // Get the providerId from URL params
@@ -115,6 +116,7 @@ const ServiceProviderDetail = () => {
           <div>
           <p id="para1"><span className="fs-5 text-warning">{feedback.uname} says:</span> &nbsp; {feedback.text}</p>
           Rating: {feedback.rating}
+          <StarRating rating= {feedback.rating} />
           </div>
         </div>
       ))}
@@ -140,6 +142,11 @@ const ServiceProviderDetail = () => {
           required
         /> <br />
         <span className="fs-5 mt-2"> Give ratings: </span>
+        <StarRating rating={newFeedback.rating} 
+        onRatingChange = {(rating) => setNewFeedback({...newFeedback, rating})}
+        required
+        />
+        {/* <span className="fs-5 mt-2"> Give ratings: </span>
         <input
           type="number"
           value={newFeedback.rating} className='rounded-4 px-4 py-1 fs-5'
@@ -148,7 +155,8 @@ const ServiceProviderDetail = () => {
           min="1"
           max="5"
           required
-        /> <br />
+        />  */}
+        <br />
         <button type="submit" className='btn btn2 shadow rounded-pill px-4 py-1 bg-info text-dark fs-5 mt-2'>Submit Feedback</button>
       </form>
       </div>

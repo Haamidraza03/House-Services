@@ -57,7 +57,11 @@ let spSchema = new mongoose.Schema({
     feedbacks: [{
         type: Schema.Types.ObjectId,
         ref: 'Fb'
-    }]
+    }],
+    averageRating:{
+        type: Number,
+        default:"0",
+    },
 },{timestamps: true});
 spSchema.index({ pLoc: '2dsphere' });
 

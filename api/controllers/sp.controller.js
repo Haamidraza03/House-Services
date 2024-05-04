@@ -127,6 +127,12 @@ export const addFeedback = async (req, res) => {
         // Create new feedback
         const newFeedback = new Fb({ text, rating, uname, serviceProvider: serviceProviderId });
         await newFeedback.save();
+
+        const feedback = await Fb.find({serviceProvider: serviceProviderId});
+        const totalRating = feedback.reduce((acc, curr) => acc+curr.rating, 0);
+        serviceProvider.averageRating = totalRating/feedback.length;
+        serviceProvider.averageRating = Math.round(serviceProvider.averageRating*10)/10;
+        await serviceProvider.save();
     
         // Add feedback reference to service provider
         Sp.feedbacks.push(newFeedback);

@@ -9,6 +9,7 @@ import artist from "./artist.jpg"
 import plumber from "./plumber.jpg"
 import {Link} from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import StarRating from '../components/StarRating';
 
 
 function Home() {
@@ -131,6 +132,8 @@ function Home() {
             </div>
             <div className='d-flex fs-4 justify-content-around'>Location: {user.location}</div>
             <p id='para1' className='bg-scroll'>{user.description}</p>
+            <p id='para1'>Average Rating: {user.averageRating}</p>
+            <StarRating rating={user.averageRating}/>
             <div className="d-flex justify-content-around">
               <span>
               <a aria-label="Whatsapp" target='_blank' href={whatsappUrl}><button className='btn btn2 shadow rounded-pill px-4 py-1 bg-info text-dark'>Contact Now</button></a>
@@ -176,6 +179,7 @@ function Home() {
             </div>
             <div className='d-flex fs-4 justify-content-around'>Location: {user.location}</div>
             <p id='para1' className='bg-scroll'>{user.description}</p>
+            <span>Average Rating: {user.averageRating} <StarRating rating={user.averageRating}/> </span>
             <div className="d-flex justify-content-around">
               <span>
               <a aria-label="Whatsapp" target='_blank' href={whatsappUrl}><button className='btn btn2 shadow rounded-pill px-4 py-1 bg-info text-dark'>Contact Now</button></a>

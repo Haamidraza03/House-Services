@@ -115,6 +115,16 @@ textarea:focus{
   font-weight: bolder !important;
 }
 
+.star-filled {
+  color: gold;
+  cursor: pointer;
+}
+
+.star-empty {
+  color: #fff;
+  cursor: pointer;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
