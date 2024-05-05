@@ -168,7 +168,7 @@ function Profile() {
                 <h1 className='text-center mt-1' data-aos="fade-down" data-aos-duration="1000" data-aos-easing="ease-in-out">Profile</h1>
                 <center><form onSubmit={handleSubmit}>
                   <input type="file" ref={fileRef} hidden accept='image/*' onChange={(e)=> setImage(e.target.files[0])} />
-                  <center><img src={currentUser ? currentUser.profilePicture : currentSp ? currentSp.profilePicture : formData.profilePicture} style={{cursor:'pointer', width:'180px'}} alt="Profile Pic" className='img-fluid col-md-4 rounded-circle' onClick={() => fileRef.current.click()} />
+                  <center><img src={currentUser ? currentUser.profilePicture : currentSp ? currentSp.profilePicture : formData.profilePicture} style={{cursor:'pointer', width:'230px'}} alt="Profile Pic" className='img-fluid col-md-5 rounded-circle' onClick={() => fileRef.current.click()} />
                   <p>
                   {imageError ? (
                     <span className='text-danger'>Error Uploading Image (File size must be less than 2 MB)</span>) : imagePercent > 0 && imagePercent < 100 ? (
@@ -177,13 +177,13 @@ function Profile() {
                   }
                   </p>
                   </center>
-                  <input defaultValue={currentUser ? currentUser.uname : currentSp ? currentSp.uname : none} type="text" id='uname' placeholder='Username' data-aos="slide-up" data-aos-duration="1000" data-aos-easing="ease-in-out" className='px-3 py-2 mt-0 mt-0 rounded-3 w-50' onChange={handleChange} /> <br />
-                  <input defaultValue={currentUser ? currentUser.email : currentSp ? currentSp.email : none} type="email" id='email' placeholder='E-mail' data-aos="slide-up" data-aos-duration="1500" data-aos-easing="ease-in-out" className='px-3 py-2 mt-1 rounded-3 w-50' onChange={handleChange} /> <br />
+                  <input defaultValue={currentUser ? currentUser.uname : currentSp ? currentSp.uname : none} type="text" id='uname' placeholder='Username' data-aos="slide-up" data-aos-duration="1000" data-aos-easing="ease-in-out" className='px-3 py-2 mt-0 mt-0 rounded-3 med' onChange={handleChange} /> <br />
+                  <input defaultValue={currentUser ? currentUser.email : currentSp ? currentSp.email : none} type="email" id='email' placeholder='E-mail' data-aos="slide-up" data-aos-duration="1500" data-aos-easing="ease-in-out" className='px-3 py-2 mt-1 rounded-3 med' onChange={handleChange} /> <br />
                   {currentUser? (
                       <span></span>
                     ) :currentSp ? (
                       <span>
-                        <input defaultValue={ currentSp.prof} type="text" id='prof' placeholder='Proffession' data-aos="slide-up" data-aos-duration="1700" data-aos-easing="ease-in-out" className='px-3 py-2 mt-1 rounded-3 w-50' onChange={handleChange} /> <br />
+                        <input defaultValue={ currentSp.prof} type="text" id='prof' placeholder='Proffession' data-aos="slide-up" data-aos-duration="1700" data-aos-easing="ease-in-out" className='px-3 py-2 mt-1 rounded-3 med' onChange={handleChange} /> <br />
                       </span>
                     ):(
                       <span></span>
@@ -192,7 +192,7 @@ function Profile() {
                       <span></span>
                     ) :currentSp ? (
                       <span>
-                        <input defaultValue={ currentSp.phno} type="number" id='phno' placeholder='Phone Number' data-aos="slide-up" data-aos-duration="1700" data-aos-easing="ease-in-out" className='px-3 py-2 mt-1 rounded-3 w-50' onChange={handleChange} /> <br />
+                        <input defaultValue={ currentSp.phno} type="number" id='phno' placeholder='Phone Number' data-aos="slide-up" data-aos-duration="1700" data-aos-easing="ease-in-out" className='px-3 py-2 mt-1 rounded-3 med' onChange={handleChange} /> <br />
                       </span>
                     ):(
                       <span></span>
@@ -201,7 +201,7 @@ function Profile() {
                       <span></span>
                     ) :currentSp ? (
                       <span>
-                        <input defaultValue={ currentSp.price} type="number" id='price' placeholder='Enter Minimum Price' data-aos="slide-up" data-aos-duration="1700" data-aos-easing="ease-in-out" className='px-3 py-2 mt-1 rounded-3 w-50' onChange={handleChange} /> <br />
+                        <input defaultValue={ currentSp.price} type="number" id='price' placeholder='Enter Minimum Price' data-aos="slide-up" data-aos-duration="1700" data-aos-easing="ease-in-out" className='px-3 py-2 mt-1 rounded-3 med' onChange={handleChange} /> <br />
                       </span>
                     ):(
                       <span></span>
@@ -210,7 +210,7 @@ function Profile() {
                       <span></span>
                     ) :currentSp ? (
                       <span>
-                        <input defaultValue={ currentSp.work} type="text" id='work' placeholder='Part Time Or Full Time?' data-aos="slide-up" data-aos-duration="1700" data-aos-easing="ease-in-out" className='px-3 py-2 mt-1 rounded-3 w-50' onChange={handleChange} /> <br />
+                        <input defaultValue={ currentSp.work} type="text" id='work' placeholder='Part Time Or Full Time?' data-aos="slide-up" data-aos-duration="1700" data-aos-easing="ease-in-out" className='px-3 py-2 mt-1 rounded-3 med' onChange={handleChange} /> <br />
                       </span>
                     ):(
                       <span></span>
@@ -219,7 +219,7 @@ function Profile() {
                       <span></span>
                     ) :currentSp ? (
                       <span>
-                        <input type="text" id='location' placeholder='Enter Your location' data-aos="slide-up" data-aos-duration="1700" data-aos-easing="ease-in-out" className='px-3 py-2 mt-1 rounded-3 w-50' onChange={handleChange} /> <br />
+                        <input type="text" id='location' placeholder='Enter Your location' data-aos="slide-up" data-aos-duration="1700" data-aos-easing="ease-in-out" className='px-3 py-2 mt-1 rounded-3 med' onChange={handleChange} /> <br />
                       </span>
                     ):(
                       <span></span>
@@ -235,12 +235,12 @@ function Profile() {
                       <span></span>
                     ) :currentSp ? (
                       <span>
-                        <textarea rows={3} defaultValue={ currentSp.description} type="text" id='description' data-aos="slide-up" data-aos-duration="2000" data-aos-easing="ease-in-out" placeholder='Description' style={{textAlign:'justify'}} className='px-3 py-2 mt-1 rounded-3 w-50' onChange={handleChange} /> <br />
+                        <textarea rows={3} defaultValue={ currentSp.description} type="text" id='description' data-aos="slide-up" data-aos-duration="2000" data-aos-easing="ease-in-out" placeholder='Description' style={{textAlign:'justify'}} className='px-3 py-2 mt-1 rounded-3 med' onChange={handleChange} /> <br />
                       </span>
                     ):(
                       <span></span>
                   )}
-                  <input type="password" id='password' placeholder='Password' data-aos="slide-up" data-aos-duration="2300" data-aos-easing="ease-in-out" className='px-3 py-2 mt-1 rounded-3 w-50' onChange={handleChange} /> <br />
+                  <input type="password" id='password' placeholder='Password' data-aos="slide-up" data-aos-duration="2300" data-aos-easing="ease-in-out" className='px-3 py-2 mt-1 rounded-3 med' onChange={handleChange} /> <br />
                   <button data-aos="zoom-in" data-aos-duration="1500" data-aos-easing="ease-in-out"className='btn rounded-pill bg-success text-white px-4 py-1 mt-2 fs-5'>{loading ? 'Loading...':'Update'}</button>
                 </form></center>
                 <center><p className='text-danger mt-1'>{error && "Something went Wrong!"}</p></center>

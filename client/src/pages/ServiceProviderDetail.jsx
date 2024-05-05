@@ -141,7 +141,7 @@ const ServiceProviderDetail = () => {
           placeholder="Enter your feedback"
           required
         /> <br />
-        <span className="fs-5 mt-2"> Give ratings: </span>
+        <span className="fs-5 mt-2 mb-0"> Give ratings: </span>
         <StarRating rating={newFeedback.rating} 
         onRatingChange = {(rating) => setNewFeedback({...newFeedback, rating})}
         required
@@ -157,7 +157,7 @@ const ServiceProviderDetail = () => {
           required
         />  */}
         <br />
-        <button type="submit" className='btn btn2 shadow rounded-pill px-4 py-1 bg-info text-dark fs-5 mt-2'>Submit Feedback</button>
+        <button type="submit" className='btn btn2 shadow rounded-pill px-4 py-1 bg-info text-dark fs-5 mt-0'>Submit Feedback</button>
       </form>
       </div>
       </div>
