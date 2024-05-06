@@ -41,11 +41,26 @@ function Home() {
 
      const [locations, setLocations] = useState([
       { id: 1, placeName: "Mumbai, Maharashtra", latitude: 19.0760, longitude: 72.8777 },
-      { id: 2, placeName: "Palghar, Maharashtra", latitude: 19.7969, longitude: 72.7452},
+      { id: 2, placeName: "Palghar, Maharashtra", latitude: 19.69693000, longitude: 72.76543000},
       { id: 3, placeName: "Navi Mumbai, Maharashtra", latitude: 19.0330, longitude: 73.0297 },
       { id: 4, placeName: "Vasai-Virar, Maharashtra", latitude: 19.3919, longitude: 72.8397 },
       { id: 5, placeName: "Panaji, Goa", latitude: 15.4909, longitude: 73.8278 },
       { id: 6, placeName: "Dehradoon, Utrakhand", latitude: 30.3165, longitude: 78.0322 },
+      { id: 7, placeName: "Srinagar, J & K", latitude: 34.08565, longitude: 74.80555 },
+      { id: 8, placeName: "Chandigarh, Punjab", latitude: 30.73331480, longitude: 76.77941790 },
+      { id: 9, placeName: "Delhi NCR, India", latitude: 28.70405920, longitude: 77.10249020 },
+      { id: 10, placeName: "Jaipur, Rajasthan", latitude: 26.907524, longitude: 75.739639 },
+      { id: 11, placeName: "Ahmedabad, Gujarat", latitude: 23.02579000, longitude: 72.58727000 },
+      { id: 12, placeName: "Lucknow, Uttar Pradesh", latitude: 26.83928000, longitude: 80.92313000 },
+      { id: 13, placeName: "Darbhanga, Bihar", latitude: 26.152973, longitude: 85.901413 },
+      { id: 14, placeName: "Gangtok, Sikkim", latitude: 27.32574000, longitude: 88.61216000 },
+      { id: 15, placeName: "Guwahati, Assam", latitude: 26.148043, longitude: 91.731377 },
+      { id: 16, placeName: "Kolkata, West Bengal", latitude: 22.54111111, longitude: 88.33777778 },
+      { id: 17, placeName: "Vishakhapatnam, Orrisa", latitude: 17.686815, longitude: 83.218483 },
+      { id: 18, placeName: "Bhopal, Madhya Pradesh", latitude: 23.254690, longitude: 77.402890 },
+      { id: 19, placeName: "Bangalore, Karnataka", latitude: 12.97194000, longitude: 77.59369000 },
+      { id: 20, placeName: "Chennai, Tamil Nadu", latitude: 13.08784000, longitude: 80.27847000 },
+      { id: 21, placeName: "Hyderabad, Telangana", latitude: 17.38405000, longitude: 78.45636000 },
       // Add more locations as needed
     ]);
   
